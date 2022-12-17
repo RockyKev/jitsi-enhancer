@@ -5,13 +5,16 @@ This extends Jitsi.
 ## TODO 
 
 0.6 - 
-[] - Fix generic icon
+[x] - Fix generic icon
 [] - set up multiple sfx for all 5 things
 [] - get animated CSS when button is clicked
 
 0.7 - 
 [] - Queue multiple sound effects
 [] - Add easter eggs
+[] - update hotkey
+[] - have it start on default
+[] - unhook if there's an accident. 
 
 0.8 - 
 [] - add super animation when event it clicked X times.
@@ -22,6 +25,7 @@ This extends Jitsi.
 [] - restructure and use import statements
 [] - update readme and improve documentation
 [] - Test on Mac
+
 
 1.0 Release
 [] - publish on store
