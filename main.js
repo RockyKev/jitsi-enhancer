@@ -7,8 +7,8 @@ function init() {
 
   function playSFX(name) {
     const sfxList = {
-      clap: "oh we're clappin",
-      cheer: "oh we're cheerin",
+      thumbsUp: "oh we're clappin",
+      weScream: "oh we're cheerin",
       boo: "oh we're booin'",
     };
     console.log("we're inside playSFX", name);
@@ -58,11 +58,11 @@ function init() {
 
         if (wholeText.includes('👍')) {
           console.log("contains thumbs up")
-          playSFX('thumbsup');
+          playSFX('thumbsUp');
         } 
         
         if (wholeText.includes('😱')) {
-          playSFX('no');
+          playSFX('weScream');
         } 
 
         // if (child === "clap") {
