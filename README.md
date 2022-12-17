@@ -1,40 +1,35 @@
-<a target="_blank" href="https://chrome.google.com/webstore/detail/nmfpplkdkcbhediajmbhljkafnlahcda">![Try it now in CWS](https://raw.github.com/GoogleChrome/chrome-extensions-samples/master/apps/tryitnowbutton.png "Click here to install this sample from the Chrome Web Store")</a>
+# Jitsi Extender
 
+This extends Jitsi. 
 
-# Hello World
+## TODO 
 
-This is a starter application. It contains a basic manifest file with no
-additional permissions. The manifest denotes a background script, main.js,
-detailed below:
+0.6 - 
+[] - Fix generic icon
+[] - set up multiple sfx for all 5 things
+[] - get animated CSS when button is clicked
 
-```javascript
-chrome.app.runtime.onLaunched.addListener(function() {
-  // Center window on screen.
-  var screenWidth = screen.availWidth;
-  var screenHeight = screen.availHeight;
-  var width = 500;
-  var height = 300;
+0.7 - 
+[] - Queue multiple sound effects
+[] - Add easter eggs
 
-  chrome.app.window.create('index.html', {
-    id: "helloWorldID",
-    outerBounds: {
-      width: width,
-      height: height,
-      left: Math.round((screenWidth-width)/2),
-      top: Math.round((screenHeight-height)/2)
-    }
-  });
-});
-```
+0.8 - 
+[] - add super animation when event it clicked X times.
+[] - Add a tracker of how many emojis were clicked.
+[] - Add twitch-style 'crazy border' when something happens
 
-This simply waits for the launch event for the application (`chrome.app.runtime.onLaunched.addListener`)
-and, at that point, creates a window using a basic HTML page, index.html, as the source.
+0.9 -
+[] - restructure and use import statements
+[] - update readme and improve documentation
+[] - Test on Mac
 
-## Resources
-
-* [Runtime](http://developer.chrome.com/apps/app.runtime.html)
-* [Window](http://developer.chrome.com/apps/app.window.html)
+1.0 Release
+[] - publish on store
      
 ## Screenshot
 ![screenshot](/apps/samples/hello-world/assets/screenshot_1280_800.png)
 
+
+## Attribution
+
+<a href="https://www.flaticon.com/free-icons/girl" title="girl icons">Girl icons created by Freepik - Flaticon</a>
