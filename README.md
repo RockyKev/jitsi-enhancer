@@ -31,6 +31,12 @@ This extends Jitsi.
 [] - Test on Mac
 
 
+## Unknowns
+1 - What happens when multiple emojis are in the same sentence?
+2 - slash commands?
+
+
+
 1.0 Release
 [] - publish on store
      

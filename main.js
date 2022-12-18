@@ -59,7 +59,6 @@ function init() {
           message = { sfx: thing };
           console.log(`contains ${thing}`);
         }
-
         if (wholeText.includes("👍")) {
           thing = "thumbsupEmoji";
           message = { sfx: thing };
@@ -189,7 +188,7 @@ function init() {
 }
 
 // Play Sound
-function playSound(volume = 0.5, src = "audio/ff-victory.wav", length = 4) {
+function playSound(src = "audio/ff-victory.wav", length = 4, volume = 0.5) {
   let url = chrome.runtime.getURL("audio.html");
 
   // set this string dynamically in your code, this is just an example
@@ -276,23 +275,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   //   console.log("sound played");
   // }
 
+  // TODO: have it automatically slot in there
   switch (request.sfx) {
     // first
     case "happyEmoji":
-      playSound(1);
-      break;
     case "panicEmoji":
-      break;
-
     case "laughEmoji":
-      break;
     case "thumbsupEmoji":
-      break;
     case "tongueEmoji":
-      break;
     case "waveEmoji":
-      break;
     case "blushEmoji":
+      playSound(`audio/${request.sfx}.wav`, 4);
       break;
 
     // second row
