@@ -1,4 +1,9 @@
-//
+/**
+ * 
+ * The Embedded Javascript
+ * Console messages show up in the Page Devtools
+ * 
+ */
 
 function init() {
   const SCRIPT_DEBUG = true;
@@ -28,12 +33,11 @@ function init() {
   // function that generates things
   // TODO: Rename this
   const generateSuccessful = (emoji, emojiType) => {
-    console.log(`contains ${emojiType}`);
+    if (SCRIPT_DEBUG) console.log(`contains ${emojiType}`);
     
     // 1 - Show the emoji floating from the bottom
     const videoWindow = document.querySelector("#jitsi-extend-animation-container");
 
-    console.log(videoWindow)
     if (videoWindow) {
       // create a visual UI element
       const emojiElement = document.createElement('div');
@@ -51,7 +55,7 @@ function init() {
       setTimeout(() => {
         const element = document.getElementById(emojiElementID);
         element.remove();
-        console.log(`Element destroyed`);
+        if (SCRIPT_DEBUG) console.log(`Element destroyed`);
       }, 4000)
 
 
@@ -64,7 +68,7 @@ function init() {
 
   // TODO: Import in here would be nice.
   function chatCallback(mutations) {
-    console.log(mutations);
+    if (SCRIPT_DEBUG) console.log(mutations);
 
     // TODO: Import in here would be nice.
     async function sendServiceWorkerMessage(msg) {
@@ -73,7 +77,6 @@ function init() {
 
     for (let mutation of mutations) {
       if (mutation.type === "childList" && mutation.addedNodes[0]) {
-        // console.log("A child node has been added");
 
         // Get the new added node
         const childElement = mutation.addedNodes[0];
@@ -81,13 +84,13 @@ function init() {
         const wholeText = childText.innerText;
 
         if (!childElement || !childText) {
-          console.warning("none was returned");
+          if (SCRIPT_DEBUG) console.warning("none was returned");
           return;
         }
 
-        // (SCRIPT_DEBUG && childElement) ? console.log(childElement) : console.log("no childElement was returned");
-        // (SCRIPT_DEBUG && childText) ? console.dir(childText) : console.log("no childText was returned");
-        // (SCRIPT_DEBUG && wholeText) ? console.dir(wholeText) : console.log("no wholeText was returned");
+        (SCRIPT_DEBUG && childElement) ? console.log(childElement) : console.log("no childElement was returned");
+        (SCRIPT_DEBUG && childText) ? console.dir(childText) : console.log("no childText was returned");
+        (SCRIPT_DEBUG && wholeText) ? console.dir(wholeText) : console.log("no wholeText was returned");
 
         // TODO: Crazy Regex for Emoji checker?
         // https://stackoverflow.com/a/64007175/4096078
@@ -169,12 +172,13 @@ function init() {
         }
 
         // 3 - send the thing
-        console.log("The Message?");
-        console.log(message);
-        console.log(Object.keys(message).length !== 0);
-
+        if (SCRIPT_DEBUG) {
+          console.log("The Message?");
+          console.log(message);
+          console.log(Object.keys(message).length !== 0);
+        }
         if (Object.keys(message).length !== 0) {
-          console.log("Sending Message:");
+          if (SCRIPT_DEBUG) console.log("Sending Message:");
 
           (async () => {
             const response = await chrome.runtime.sendMessage(message);
@@ -201,6 +205,18 @@ function init() {
   observer.observe(chatWindow, options);
 
 }
+
+
+/**
+ * 
+ * The Service Worker
+ * Debug messages show up in chrome://extensions/
+ * Visit the Extension -> Inspect Views: "Service Worker"
+ * 
+ */
+const meetingUrl1 = "https://meet.jit.si/";
+const meetingUrl2 = "https://meet.";
+const EXTENSION_DEBUG = true;
 
 // Play Sound
 function playSound(src = "audio/ff-victory.wav", length = 4, volume = 0.5) {
@@ -231,8 +247,6 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-const meetings = "https://meet.jit.si/";
-const EXTENSION_DEBUG = true;
 
 // Chrome Extension Init
 chrome.action.onClicked.addListener(async (tab) => {
@@ -240,7 +254,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 
   if (EXTENSION_DEBUG) console.clear();
 
-  if (tab.url.startsWith(meetings)) {
+  if (tab.url.startsWith(meetingUrl1) || tab.url.startsWith(meetingUrl1)) {
     console.log("I am in the proper URL");
 
     // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
