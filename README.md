@@ -7,7 +7,7 @@ This extends Jitsi.
 0.6 - 
 [x] - Fix generic icon
 [x] - set up multiple sfx for 5 things
-[] - set up multiple sfx for all the things
+[x] - set up multiple sfx for all the things
 [] - change popup to sfx
 [] - get animated CSS when button is clicked
 [] - Add debugger
@@ -15,7 +15,7 @@ This extends Jitsi.
 0.7 - 
 [] - Queue multiple sound effects
 [] - Add easter eggs
-[] - update hotkey
+[] - update/disable hotkey
 [] - have it start on default
 [] - unhook if there's an accident. 
 [] - Keep it active even without chat window
@@ -29,7 +29,7 @@ This extends Jitsi.
 [] - restructure and use import statements
 [] - update readme and improve documentation
 [] - Test on Mac
-
+[] - Hotkeys?
 
 ## Unknowns
 1 - What happens when multiple emojis are in the same sentence?
@@ -49,3 +49,5 @@ This extends Jitsi.
 <a href="https://www.flaticon.com/free-icons/girl" title="girl icons">Girl icons created by Freepik - Flaticon</a>
 
 Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6185">Pixabay</a>
+
+Additional sound effects from https://www.zapsplat.com
