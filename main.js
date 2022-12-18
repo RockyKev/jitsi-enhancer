@@ -154,9 +154,9 @@ function init() {
         }
 
         // 3 - send the thing
-        console.log("The Message?")
-        console.log(message)
-        console.log(Object.keys(message).length !== 0)
+        console.log("The Message?");
+        console.log(message);
+        console.log(Object.keys(message).length !== 0);
 
         if (Object.keys(message).length !== 0) {
           // (async () => {
@@ -290,34 +290,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     // second row
     case "smileEmoji":
-      break;
-
     case "screamEmoji":
-      break;
     case "woopsEmoji":
-      break;
     case "thumbsdownEmoji":
-      break;
-
     case "searchEmoji":
-      break;
     case "loveEmoji":
-      break;
     case "angelEmoji":
+      playSound(`audio/${request.sfx}.wav`, 4);
       break;
 
     // third row
     case "annoyedEmoji":
-      break;
     case "angelbabyEmoji":
-      break;
     case "cryingEmoji":
-      break;
     case "clapEmoji":
-      break;
     case "winkEmoji":
-      break;
     case "beerEmoji":
+      playSound(`audio/${request.sfx}.wav`, 4);
       break;
 
     default:
