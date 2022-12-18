@@ -5,7 +5,62 @@ function init() {
 
   console.log("initializing");
   if (SCRIPT_DEBUG) console.clear();
+
+  /* Inject CSS */
+  const videoWindow = document.querySelector("#videospace");
+
+  if (videoWindow) {
+    // videoWindow.classList.add("jitsi-extend-animation-container");
+
+    const animationContainer = document.createElement('div');
+    animationContainer.setAttribute("id", "jitsi-extend-animation-container");
+
+    videoWindow.prepend(animationContainer);
+
+  } else {
+    console.error("Chrome Extension: Can't find the videoContainer")
+  }
+
+
+  /* Find the chat */
   const chatWindow = document.querySelector("#chatconversation");
+
+  // function that generates things
+  // TODO: Rename this
+  const generateSuccessful = (emoji, emojiType) => {
+    console.log(`contains ${emojiType}`);
+    
+    // 1 - Show the emoji floating from the bottom
+    const videoWindow = document.querySelector("#jitsi-extend-animation-container");
+
+    console.log(videoWindow)
+    if (videoWindow) {
+      // create a visual UI element
+      const emojiElement = document.createElement('div');
+      const emojiElementID = `emoji-id-${Date.now()}`;  // TODO: Poor Man's ID generator
+
+      emojiElement.setAttribute("id", emojiElementID);
+      emojiElement.classList.add("jitsi-extend-animation-emoji");
+      emojiElement.innerText = emoji;
+
+      videoWindow.append(emojiElement);
+
+
+      // TODO: would be nice to destroy it after animation is over
+      // destroy the element after 4 seconds
+      setTimeout(() => {
+        const element = document.getElementById(emojiElementID);
+        element.remove();
+        console.log(`Element destroyed`);
+      }, 4000)
+
+
+    }
+
+    // return the Object
+    return { sfx: emojiType };
+  }
+
 
   // TODO: Import in here would be nice.
   function chatCallback(mutations) {
@@ -38,119 +93,79 @@ function init() {
         // https://stackoverflow.com/a/64007175/4096078
 
         // 1 - if text is valid
-
         let message = {};
         let thing = "";
 
         // 2 - build the thing
         // first row
+        // TODO: would be nice to migrate this somewhere else
         if (wholeText.includes("😃")) {
-          thing = "happyEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😃', 'happyEmoji');        
         }
         if (wholeText.includes("😦")) {
-          thing = "panicEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😦', 'panicEmoji');        
         }
         if (wholeText.includes("😄")) {
-          thing = "laughEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😄', 'laughEmoji');        
         }
         if (wholeText.includes("👍")) {
-          thing = "thumbsupEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('👍', 'thumbsupEmoji');        
         }
         if (wholeText.includes("😛")) {
-          thing = "tongueEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😛', 'tongueEmoji');        
         }
         if (wholeText.includes("👋")) {
-          thing = "waveEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('👋', 'waveEmoji');        
         }
         if (wholeText.includes("😊")) {
-          thing = "blushEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😊', 'blushEmoji');        
         }
 
         // second row
         if (wholeText.includes("🙂")) {
-          thing = "smileEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('🙂', 'smileEmoji');        
         }
         if (wholeText.includes("😱")) {
-          thing = "screamEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😱', 'screamEmoji');        
         }
 
         if (wholeText.includes("😗")) {
-          thing = "woopsEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😗', 'woopsEmoji');        
         }
         if (wholeText.includes("👎")) {
-          thing = "thumbsdownEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('👎', 'thumbsdownEmoji');        
         }
 
         if (wholeText.includes("🔍")) {
-          thing = "searchEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('🔍', 'searchEmoji');        
         }
 
         if (wholeText.includes("❤️")) {
-          thing = "loveEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('❤️', 'loveEmoji');        
         }
 
         if (wholeText.includes("😇")) {
-          thing = "angelEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😇', 'angelEmoji');        
         }
 
         // third row
         if (wholeText.includes("😠")) {
-          thing = "annoyedEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😠', 'annoyedEmoji');        
         }
         if (wholeText.includes("👼")) {
-          thing = "angelbabyEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('👼', 'angelbabyEmoji');        
         }
         if (wholeText.includes("😭")) {
-          thing = "cryingEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😭', 'cryingEmoji');        
         }
         if (wholeText.includes("👏")) {
-          thing = "clapEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('👏', 'clapEmoji');        
         }
         if (wholeText.includes("😉")) {
-          thing = "winkEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('😉', 'winkEmoji');        
         }
         if (wholeText.includes("🍺")) {
-          thing = "beerEmoji";
-          message = { sfx: thing };
-          console.log(`contains ${thing}`);
+          message = generateSuccessful('🍺', 'beerEmoji');        
         }
 
         // 3 - send the thing
@@ -159,21 +174,23 @@ function init() {
         console.log(Object.keys(message).length !== 0);
 
         if (Object.keys(message).length !== 0) {
-          // (async () => {
-          //   const response = await chrome.runtime.sendMessage({
-          //     greeting: "hello",
-          //   });
-          // })();
           console.log("Sending Message:");
 
           (async () => {
             const response = await chrome.runtime.sendMessage(message);
           })();
         }
+
+
+
       }
     }
   }
 
+
+
+
+  /* Create the Observer */  
   const observer = new MutationObserver(chatCallback);
   const options = {
     attributes: true,
@@ -181,10 +198,8 @@ function init() {
     subtree: true,
     characterDataOldValue: true,
   };
-
   observer.observe(chatWindow, options);
 
-  console.log(chatWindow);
 }
 
 // Play Sound
@@ -241,6 +256,12 @@ chrome.action.onClicked.addListener(async (tab) => {
 
     if (nextState === "ON") {
       console.log("Execute Script!");
+
+      await chrome.scripting.insertCSS({
+        files: ["styles/main.css"],
+        target: { tabId: tab.id },
+      });
+  
 
       chrome.scripting.executeScript(
         {

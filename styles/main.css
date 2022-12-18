@@ -1,34 +1,55 @@
-/* html, body {
-  height: 100%;
+#jitsi-extend-animation-container {
+  border: 3px solid red;
+  border-radius: 5px;
+  height: 95vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: static;
 }
 
-body {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-image: url("../hello_world.png"), -webkit-radial-gradient(center, ellipse cover,#FFFFFF 0%,#FAFAFA 50%,#F5F5F5 60%,#BEBEBE 100%);
-  margin: 0;
-  padding: 0;
-}
+.jitsi-extend-animation-emoji {
+  /* TODO: VARIABLE via JS */
+  --emoji-size: 2rem;
+  --emoji-rotation: 20deg;
+  /* --animation-count: infinite; */
+    --animation-count: 1;
 
-h1 {
+  height: 200px;
+  font-size: var(--emoji-size);
   position: absolute;
-  bottom: 20px;
-  text-align: center;
-  width: 100%;
-  line-height: 120%;
-  font-family: Arial, sans-serif;
-  color: rgb(66,66,66);
-  letter-spacing: -0.05em;
-} */
 
-body > .scaffold > :is(top-nav, navigation-rail, side-nav, footer),
-main > :not(:last-child),
-main > :last-child > navigation-tree,
-main .toc-container {
-  display: none;
+  /* animation properties */
+  -moz-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+
+  /* animation duration lineage animation-count */
+  -moz-animation: jump-up-and-fade 4s cubic-bezier(0, 0.21, 0.32, 1.34)
+    var(--animation-count);
+  -webkit-animation: jump-up-and-fade 4s cubic-bezier(0, 0.21, 0.32, 1.34)
+    var(--animation-count);
+  animation: jump-up-and-fade 4s cubic-bezier(0, 0.21, 0.32, 1.34)
+    var(--animation-count);
+    animation-fill-mode: forwards; 
+
 }
 
-main > :last-child {
-  margin-top: min(10vmax, 10rem);
-  margin-bottom: min(10vmax, 10rem);
+@keyframes jump-up-and-fade {
+  0% {
+    -moz-transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: translateY(-100%) rotate(var(--emoji-rotation));
+    -webkit-transform: translateY(-100%) rotate(var(--emoji-rotation));
+    transform: translateY(-100%) rotate(var(--emoji-rotation));
+    opacity: 0;
+  }
 }
