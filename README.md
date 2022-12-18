@@ -7,7 +7,9 @@ This extends Jitsi.
 0.6 - 
 [x] - Fix generic icon
 [] - set up multiple sfx for all 5 things
+[] - change popup to sfx
 [] - get animated CSS when button is clicked
+[] - Add debugger
 
 0.7 - 
 [] - Queue multiple sound effects
@@ -15,6 +17,7 @@ This extends Jitsi.
 [] - update hotkey
 [] - have it start on default
 [] - unhook if there's an accident. 
+[] - Keep it active even without chat window
 
 0.8 - 
 [] - add super animation when event it clicked X times.

@@ -1,33 +1,20 @@
+//
+
 function init() {
+  const SCRIPT_DEBUG = true;
+
   console.log("initializing");
-  console.clear();
+  if (SCRIPT_DEBUG) console.clear();
   const chatWindow = document.querySelector("#chatconversation");
 
-  // function playSFX(name) {
-  //   const sfxList = {
-  //     thumbsUp: "oh we're clappin",
-  //     weScream: "oh we're cheerin",
-  //     boo: "oh we're booin'",
-  //   };
-  //   console.log("we're inside playSFX", name);
-  //   console.log(typeof name);
-
-  //   // check if the name is here
-  //   if (!Object.hasOwn(sfxList, name)) {
-  //     console.error("This sfx doesn't exist");
-  //     return;
-  //   }
-
-  //   // const musicSource = "https://github.com/RockyKev/teatime-with-rocky/blob/241fcc4fcf6f4b65a0de1b63c68051abed938cdf/a-jazz-piano-110481.mp3?raw=true";
-  //   // const musicElement = new Audio(musicSource);
-  //   // musicElement.play();
-  //   // musicElement.volume = 0.55;
-
-  //   return sfxList[name];
-  // }
-
+  // TODO: Import in here would be nice.
   function chatCallback(mutations) {
     console.log(mutations);
+
+    // TODO: Import in here would be nice.
+    async function sendServiceWorkerMessage(msg) {
+      const response = await chrome.runtime.sendMessage(msg);
+    }
 
     for (let mutation of mutations) {
       if (mutation.type === "childList" && mutation.addedNodes[0]) {
@@ -42,27 +29,147 @@ function init() {
           console.warning("none was returned");
           return;
         }
-        // (childElement) ? console.log(childElement) : console.log("no childElement was returned");
-        // (childText) ? console.dir(childText) : console.log("no childText was returned");
-        // (wholeText) ? console.dir(wholeText) : console.log("no wholeText was returned");
+
+        // (SCRIPT_DEBUG && childElement) ? console.log(childElement) : console.log("no childElement was returned");
+        // (SCRIPT_DEBUG && childText) ? console.dir(childText) : console.log("no childText was returned");
+        // (SCRIPT_DEBUG && wholeText) ? console.dir(wholeText) : console.log("no wholeText was returned");
 
         // TODO: Crazy Regex for Emoji checker?
         // https://stackoverflow.com/a/64007175/4096078
 
-        if (wholeText.includes("👍")) {
-          console.log("contains thumbs up");
-          console.log(chrome);
+        // 1 - if text is valid
 
-          (async () => {
-            const response = await chrome.runtime.sendMessage({
-              greeting: "hello",
-            });
-          })();
+        let message = {};
+        let thing = "";
 
+        // 2 - build the thing
+        // first row
+        if (wholeText.includes("😃")) {
+          thing = "happyEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😦")) {
+          thing = "panicEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😄")) {
+          thing = "laughEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
         }
 
+        if (wholeText.includes("👍")) {
+          thing = "thumbsupEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😛")) {
+          thing = "tongueEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("👋")) {
+          thing = "waveEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😊")) {
+          thing = "blushEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        // second row
+        if (wholeText.includes("🙂")) {
+          thing = "smileEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
         if (wholeText.includes("😱")) {
-          console.log("contains scream");
+          thing = "screamEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        if (wholeText.includes("😗")) {
+          thing = "woopsEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("👎")) {
+          thing = "thumbsdownEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        if (wholeText.includes("🔍")) {
+          thing = "searchEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        if (wholeText.includes("❤️")) {
+          thing = "loveEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        if (wholeText.includes("😇")) {
+          thing = "angelEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        // third row
+        if (wholeText.includes("😠")) {
+          thing = "annoyedEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("👼")) {
+          thing = "angelbabyEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😭")) {
+          thing = "cryingEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("👏")) {
+          thing = "clapEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("😉")) {
+          thing = "winkEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+        if (wholeText.includes("🍺")) {
+          thing = "beerEmoji";
+          message = { sfx: thing };
+          console.log(`contains ${thing}`);
+        }
+
+        // 3 - send the thing
+        console.log("The Message?")
+        console.log(message)
+        console.log(Object.keys(message).length !== 0)
+
+        if (Object.keys(message).length !== 0) {
+          // (async () => {
+          //   const response = await chrome.runtime.sendMessage({
+          //     greeting: "hello",
+          //   });
+          // })();
+          console.log("Sending Message:");
+
+          (async () => {
+            const response = await chrome.runtime.sendMessage(message);
+          })();
         }
       }
     }
@@ -82,14 +189,14 @@ function init() {
 }
 
 // Play Sound
-function playSound(volume = 0.5, src = "audio/ff-victory.mp3", length = 4) {
+function playSound(volume = 0.5, src = "audio/ff-victory.wav", length = 4) {
   let url = chrome.runtime.getURL("audio.html");
 
   // set this string dynamically in your code, this is just an example
   // this will play success.wav at half the volume and close the popup after a second
   url += `?volume=${volume}&src=${src}&length=${length * 1000}`;
 
-  console.log("building the query string")
+  console.log("building the query string");
   console.log(url);
 
   chrome.windows.create({
@@ -111,10 +218,13 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 const meetings = "https://meet.jit.si/";
+const EXTENSION_DEBUG = true;
 
 // Chrome Extension Init
 chrome.action.onClicked.addListener(async (tab) => {
   console.log("event listener started");
+
+  if (EXTENSION_DEBUG) console.clear();
 
   if (tab.url.startsWith(meetings)) {
     console.log("I am in the proper URL");
@@ -150,7 +260,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.groupCollapsed();
-  console.log("I have recieved a request")
+  console.log("I have recieved a request");
   console.log(
     sender.tab
       ? "from a content script:" + sender.tab.url
@@ -159,11 +269,67 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   console.log(request);
 
+  // Based on the request
 
-  if (request.greeting === "hello") {
-          playSound(1);
-        console.log("sound played");
-  };
+  // if (request.sfx === "hello") {
+  //   playSound(1);
+  //   console.log("sound played");
+  // }
+
+  switch (request.sfx) {
+    // first
+    case "happyEmoji":
+      playSound(1);
+      break;
+    case "panicEmoji":
+      break;
+
+    case "laughEmoji":
+      break;
+    case "thumbsupEmoji":
+      break;
+    case "tongueEmoji":
+      break;
+    case "waveEmoji":
+      break;
+    case "blushEmoji":
+      break;
+
+    // second row
+    case "smileEmoji":
+      break;
+
+    case "screamEmoji":
+      break;
+    case "woopsEmoji":
+      break;
+    case "thumbsdownEmoji":
+      break;
+
+    case "searchEmoji":
+      break;
+    case "loveEmoji":
+      break;
+    case "angelEmoji":
+      break;
+
+    // third row
+    case "annoyedEmoji":
+      break;
+    case "angelbabyEmoji":
+      break;
+    case "cryingEmoji":
+      break;
+    case "clapEmoji":
+      break;
+    case "winkEmoji":
+      break;
+    case "beerEmoji":
+      break;
+
+    default:
+      console.error(`${request.sfx} doesn't have anything`);
+  }
+
   console.groupEnd();
-
 });
