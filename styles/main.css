@@ -1,4 +1,4 @@
-#jitsi-extend-animation-container {
+#jitsi-enhance-animation-container {
 
   /* border-top: 20px solid green; */
   /* border-right: 3px solid orange;
@@ -14,7 +14,7 @@
   position: static;
 }
 
-#jitsi-extend-animation-container fieldset {
+#jitsi-enhance-animation-container fieldset {
   border: 10px solid transparent; 
 	border-top-color: green; 
   width: 55%;
@@ -22,13 +22,13 @@
   top: 5px;
 }
 
-#jitsi-extend-animation-container fieldset legend {
+#jitsi-enhance-animation-container fieldset legend {
 	font: 15pt/0 'Averia Serif Libre'; 
 	margin: auto; 
 	padding: 0 4px; 
 } 
 
-.jitsi-extend-animation-emoji {
+.jitsi-enhance-animation-emoji {
   /* TODO: VARIABLE via JS */
   --emoji-size: 2rem;
   --emoji-rotation: 20deg;

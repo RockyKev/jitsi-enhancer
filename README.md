@@ -22,7 +22,7 @@ This enhances Jitsi to add sfx to emojis, and more. (please clap)
 - [x] update/disable hotkey
 - [x] animated emoji spin
 - [x] rename project
-- [ ] publish on store (with a custom account)
+- [x] publish on store (with a custom account)
 
 
 ### 0.8 Pearl Jam
@@ -56,7 +56,7 @@ https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
 
      
 ## Screenshot
-![screenshot](/apps/samples/hello-world/assets/screenshot_1280_800.png)
+![screenshot](/apps/samples/hello-world/assets/screenshot.png)
 
 
 ## Attribution
