@@ -12,8 +12,8 @@ function init() {
   if (SCRIPT_DEBUG) console.clear();
 
   /* Save Sessions */
-  if (!sessionStorage.getItem("jitsi-extender")) {
-    sessionStorage.setItem("jitsi-extender", "ready");
+  if (!sessionStorage.getItem("jitsi-enhancer")) {
+    sessionStorage.setItem("jitsi-enhancer", "ready");
   }
   
   /* Inject CSS */
@@ -23,7 +23,7 @@ function init() {
 
     // create a wrapper
     const animationContainer = document.createElement('div');
-    animationContainer.setAttribute("id", "jitsi-extend-animation-container");
+    animationContainer.setAttribute("id", "jitsi-enhance-animation-container");
 
     // create a fieldset and legend for text
     const animationContainerFieldset = document.createElement('fieldset');
@@ -65,7 +65,7 @@ function init() {
     if (SCRIPT_DEBUG) console.log(`contains ${emojiType}`);
     
     // 1 - Show the emoji floating from the bottom
-    const videoWindow = document.querySelector("#jitsi-extend-animation-container");
+    const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
     if (videoWindow && emoji) {
       // create a visual UI element
@@ -73,7 +73,7 @@ function init() {
       const emojiElementID = `emoji-id-${Date.now()}`;  // TODO: Poor Man's ID generator
 
       emojiElement.setAttribute("id", emojiElementID);
-      emojiElement.classList.add("jitsi-extend-animation-emoji");
+      emojiElement.classList.add("jitsi-enhance-animation-emoji");
       emojiElement.innerText = emoji;
 
       videoWindow.append(emojiElement);

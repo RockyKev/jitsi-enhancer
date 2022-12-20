@@ -1,6 +1,6 @@
-# Jitsi Extender
+# Jitsi Enhancer
 
-This extends Jitsi. 
+This enhances Jitsi to add sfx to emojis, and more. (please clap)
 
 ## TODO 
 
