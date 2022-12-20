@@ -11,6 +11,11 @@ function init() {
   console.log("initializing");
   if (SCRIPT_DEBUG) console.clear();
 
+  /* Save Sessions */
+  if (!sessionStorage.getItem("jitsi-extender")) {
+    sessionStorage.setItem("jitsi-extender", "ready");
+  }
+  
   /* Inject CSS */
   const videoWindow = document.querySelector("#videospace");
 
@@ -62,7 +67,7 @@ function init() {
     // 1 - Show the emoji floating from the bottom
     const videoWindow = document.querySelector("#jitsi-extend-animation-container");
 
-    if (videoWindow) {
+    if (videoWindow && emoji) {
       // create a visual UI element
       const emojiElement = document.createElement('div');
       const emojiElementID = `emoji-id-${Date.now()}`;  // TODO: Poor Man's ID generator
@@ -73,7 +78,6 @@ function init() {
 
       videoWindow.append(emojiElement);
 
-
       // TODO: would be nice to destroy it after animation is over
       // destroy the element after 4 seconds
       setTimeout(() => {
@@ -81,8 +85,6 @@ function init() {
         element.remove();
         if (SCRIPT_DEBUG) console.log(`Element destroyed`);
       }, 4000)
-
-
     }
 
     // return the Object
@@ -94,18 +96,15 @@ function init() {
   function chatCallback(mutations) {
     if (SCRIPT_DEBUG) console.log(mutations);
 
-    // TODO: Import in here would be nice.
-    async function sendServiceWorkerMessage(msg) {
-      const response = await chrome.runtime.sendMessage(msg);
-    }
-
     for (let mutation of mutations) {
       if (mutation.type === "childList" && mutation.addedNodes[0]) {
 
         // Get the new added node
         const childElement = mutation.addedNodes[0];
         const childText = childElement.querySelector(".usermessage");
-        const wholeText = childText.innerText;
+        // const wholeText = childText.innerText;
+        const childHTML = childText.innerHTML;
+        const wholeText = childHTML.substring(childHTML.indexOf('</span>') + 7)
 
         if (!childElement || !childText) {
           if (SCRIPT_DEBUG) console.warning("none was returned");
@@ -126,6 +125,33 @@ function init() {
         // 2 - build the thing
         // first row
         // TODO: would be nice to migrate this somewhere else
+
+        // SLASH COMMANDS
+        if (wholeText.trim() === '/tracey') {
+          console.log("I see a tracey!")
+          message = generateSuccessful(false, 'traceySlash'); 
+        }
+        if (wholeText.trim() === '/audienceClap') {
+          console.log("I see a audienceClap!")
+          // 10 seconds
+          message = generateSuccessful(false, 'audienceClapSlash'); 
+        }
+        if (wholeText.trim() === '/bgJazz') {
+          console.log("I see a bgJazz!")
+          // 1:17 seconds
+          message = generateSuccessful(false, 'bgJazzSlash'); 
+        }
+        if (wholeText.trim() === '/yeah') {
+          console.log("I see a yeah!")
+          // 8 seconds
+          message = generateSuccessful(false, 'yeahSlash'); 
+        }
+
+
+
+
+
+        // EMOJI COMMANDS
         if (wholeText.includes("😃")) {
           message = generateSuccessful('😃', 'happyEmoji');        
         }
@@ -378,6 +404,15 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "beerEmoji":
       playSound(`audio/${request.sfx}.wav`, 4);
       break;
+
+    // slash commands
+    case "yeahSlash":
+    case "audienceClapSlash":
+    case "bgJazzSlash":
+    case "traceySlash":
+      playSound(`audio/${request.sfx}.wav`, 4);
+      break;
+
 
     default:
       console.error(`${request.sfx} doesn't have anything`);

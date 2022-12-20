@@ -18,9 +18,11 @@ This extends Jitsi.
 - [x] have the chat load when you turn it on
 - [x] fix the CSS so it's shown as on
 - [x] Fix icon for popup
-- [ ] Add easter eggs
+- [x] Add easter eggs
 - [ ] update/disable hotkey
-- [ ] publish on store
+- [ ] publish on store (with a custom account)
+- [ ] animated emoji spin
+
 
 ### 0.8 Pearl Jam
 - [ ] restructure and use import statements https://developer.chrome.com/docs/extensions/reference/scripting/#files
@@ -29,6 +31,7 @@ This extends Jitsi.
 - [ ] Hotkeys?
 - [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
 - [ ] separate service worker and background file
+- [ ] Fix time function - refactor generateSuccessful
 
 ### 0.9 Red Hot Chili Peppers
 - [ ] add super animation when event it clicked X times.
@@ -37,13 +40,13 @@ This extends Jitsi.
 - [ ] unhook if there's an accident. 
 - [ ] Only create one "jitsi-extend-animation-container"
 - [ ] Keep it active even without chat window
-
+- [ ] Add a global variable to set it so only one sfx at a time.
+ 
 ### 1.0 Green Day
 - [ ] Release
 
 ## Unknowns
 1 - What happens when multiple emojis are in the same sentence?
-2 - slash commands?
 3 - If you load the extension before the chat, it causes an error. 
 
 ## References
