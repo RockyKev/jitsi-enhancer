@@ -17,7 +17,7 @@ This extends Jitsi.
 - [x] Queue multiple sound effects
 - [x] have the chat load when you turn it on
 - [x] fix the CSS so it's shown as on
-- [ ] Fix icon for popup
+- [x] Fix icon for popup
 - [ ] Add easter eggs
 - [ ] update/disable hotkey
 - [ ] publish on store
