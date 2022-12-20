@@ -254,7 +254,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 
   if (EXTENSION_DEBUG) console.clear();
 
-  if (tab.url.startsWith(meetingUrl1) || tab.url.startsWith(meetingUrl1)) {
+  if (tab.url.startsWith(meetingUrl1) || tab.url.startsWith(meetingUrl2)) {
     console.log("I am in the proper URL");
 
     // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
