@@ -20,8 +20,8 @@ This extends Jitsi.
 - [x] Fix icon for popup
 - [x] Add easter eggs
 - [x] update/disable hotkey
+- [x] animated emoji spin
 - [ ] publish on store (with a custom account)
-- [ ] animated emoji spin
 
 
 ### 0.8 Pearl Jam
@@ -48,6 +48,7 @@ This extends Jitsi.
 ## Unknowns
 1 - What happens when multiple emojis are in the same sentence?
 3 - If you load the extension before the chat, it causes an error. 
+4 - what happens when you hit it on the intro screen?
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/

@@ -78,10 +78,16 @@ function init() {
 
       videoWindow.append(emojiElement);
 
+      // randomize the element 
+      const element = document.getElementById(emojiElementID);
+      const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
+      const number = numbers[Math.floor(Math.random() * numbers.length)];
+      element.style.setProperty('--emoji-rotation', `${number}deg`)
+      
+      console.log("number", number)
       // TODO: would be nice to destroy it after animation is over
       // destroy the element after 4 seconds
       setTimeout(() => {
-        const element = document.getElementById(emojiElementID);
         element.remove();
         if (SCRIPT_DEBUG) console.log(`Element destroyed`);
       }, 4000)
