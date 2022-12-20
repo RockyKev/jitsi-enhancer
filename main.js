@@ -15,7 +15,6 @@ function init() {
   const videoWindow = document.querySelector("#videospace");
 
   if (videoWindow) {
-    // videoWindow.classList.add("jitsi-extend-animation-container");
 
     const animationContainer = document.createElement('div');
     animationContainer.setAttribute("id", "jitsi-extend-animation-container");
@@ -24,11 +23,27 @@ function init() {
 
   } else {
     console.error("Chrome Extension: Can't find the videoContainer")
+    return; // early exit
   }
 
-
   /* Find the chat */
-  const chatWindow = document.querySelector("#chatconversation");
+  let chatWindow = document.querySelector("#chatconversation");
+
+  if (!chatWindow) {
+    console.info("Chrome Extension: Can't find the chatWindow")
+
+    // find the chat button
+    const chatButton = document.querySelector(".toolbar-button-with-badge").firstChild;
+    chatButton.click();
+    
+    // If that doesn't work: https://stackoverflow.com/a/70695934/4096078
+    // chatButton.dispatchEvent( new MouseEvent( 'mousedown' ) );
+    // chatButton.dispatchEvent( new MouseEvent( 'click' ) );
+    // chatButton.dispatchEvent( new MouseEvent( 'mouseup' ) );
+    chatWindow = document.querySelector("#chatconversation");
+    chatWindow ? console.info("Chrome Extension: found it now!") : console.info("Chrome Extension: still can't find it?")
+
+  }
 
   // function that generates things
   // TODO: Rename this
@@ -214,6 +229,7 @@ function init() {
  * Visit the Extension -> Inspect Views: "Service Worker"
  * 
  */
+
 const meetingUrl1 = "https://meet.jit.si/";
 const meetingUrl2 = "https://meet.";
 const EXTENSION_DEBUG = true;
@@ -276,14 +292,21 @@ chrome.action.onClicked.addListener(async (tab) => {
         target: { tabId: tab.id },
       });
   
+      // chrome.scripting.executeScript(
+      //   {
+      //     target: { tabId: tab.id },
+      //     files: ['jitsi_external_api.js'],
+      //   },
+      //   () => {          // ...
+      //   }
+      // );
 
       chrome.scripting.executeScript(
         {
           target: { tabId: tab.id },
           func: init,
         },
-        () => {
-          // ...
+        () => {          // ...
         }
       );
     }
@@ -291,6 +314,9 @@ chrome.action.onClicked.addListener(async (tab) => {
     console.log("We are off now");
   }
 });
+
+
+
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.groupCollapsed();
