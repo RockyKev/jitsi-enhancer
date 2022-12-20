@@ -22,13 +22,5 @@
       "128": "images/icon-128.png"
     }
   },
-  "permissions": ["activeTab", "scripting"],
-  "commands": {
-    "_execute_action": {
-      "suggested_key": {
-        "default": "Ctrl+U",
-        "mac": "Command+U"
-      }
-    }
-  }
+  "permissions": ["activeTab", "scripting"]
 }

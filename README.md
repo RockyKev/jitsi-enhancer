@@ -19,7 +19,7 @@ This extends Jitsi.
 - [x] fix the CSS so it's shown as on
 - [x] Fix icon for popup
 - [x] Add easter eggs
-- [ ] update/disable hotkey
+- [x] update/disable hotkey
 - [ ] publish on store (with a custom account)
 - [ ] animated emoji spin
 
