@@ -26,10 +26,9 @@ This enhances Jitsi to add sfx to emojis, and more. (please clap)
 
 
 ### 0.8 Pearl Jam
-- [ ] restructure and use import statements https://developer.chrome.com/docs/extensions/reference/scripting/#files
+- [x] restructure and use import statements https://developer.chrome.com/docs/extensions/reference/scripting/#files
 - [ ] update readme and improve documentation
 - [ ] Test on Mac
-- [ ] Hotkeys?
 - [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
 - [ ] separate service worker and background file
 - [ ] Fix time function - refactor generateSuccessful
@@ -56,7 +55,7 @@ https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
 
      
 ## Screenshot
-![screenshot](/assets/screenshot.png)
+![screenshot](/images/screenshot.png)
 
 
 ## Attribution
