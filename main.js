@@ -16,9 +16,18 @@ function init() {
 
   if (videoWindow) {
 
+    // create a wrapper
     const animationContainer = document.createElement('div');
     animationContainer.setAttribute("id", "jitsi-extend-animation-container");
 
+    // create a fieldset and legend for text
+    const animationContainerFieldset = document.createElement('fieldset');
+    const animationContainerFieldsetLegend = document.createElement('legend');
+    animationContainerFieldsetLegend.innerText = "JITSI ENHANCED";
+    animationContainerFieldset.append(animationContainerFieldsetLegend)
+    animationContainer.append(animationContainerFieldset)
+
+    // attach everything together 
     videoWindow.prepend(animationContainer);
 
   } else {

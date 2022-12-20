@@ -1,9 +1,9 @@
 #jitsi-extend-animation-container {
 
-  border-top: 3px solid red;
-  border-right: 3px solid orange;
-  border-bottom: 3px solid yellow;
-  border-left: 3px solid green;
+  /* border-top: 20px solid green; */
+  /* border-right: 3px solid orange;
+  border-bottom: 3px solid yellow; */
+  /* border-left: 3px solid green; */
 
   border-radius: 5px;
   height: 95vh;
@@ -13,6 +13,20 @@
   align-items: flex-end;
   position: static;
 }
+
+#jitsi-extend-animation-container fieldset {
+  border: 10px solid transparent; 
+	border-top-color: green; 
+  width: 55%;
+  position: absolute;
+  top: 5px;
+}
+
+#jitsi-extend-animation-container fieldset legend {
+	font: 15pt/0 'Averia Serif Libre'; 
+	margin: auto; 
+	padding: 0 4px; 
+} 
 
 .jitsi-extend-animation-emoji {
   /* TODO: VARIABLE via JS */
