@@ -56,7 +56,7 @@ https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
 
      
 ## Screenshot
-![screenshot](/apps/samples/hello-world/assets/screenshot.png)
+![screenshot](/assets/screenshot.png)
 
 
 ## Attribution
