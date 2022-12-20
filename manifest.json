@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Jitsi Enhancer",
-  "description": "Getting Real Enhancer-y up in here",
+  "name": "Jitsi Enhance",
+  "description": "This adds features to Jitsi",
   "version": "0.7",
   "icons": {
     "16": "images/icon-16.png",

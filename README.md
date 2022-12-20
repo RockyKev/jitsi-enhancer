@@ -21,6 +21,7 @@ This extends Jitsi.
 - [x] Add easter eggs
 - [x] update/disable hotkey
 - [x] animated emoji spin
+- [x] rename project
 - [ ] publish on store (with a custom account)
 
 
