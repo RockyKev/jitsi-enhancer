@@ -79,14 +79,6 @@ chrome.action.onClicked.addListener(async (tab) => {
         }
       );
 
-      // chrome.scripting.executeScript(
-      //   {
-      //     target: { tabId: tab.id },
-      //     func: init,
-      //   },
-      //   () => {          // ...
-      //   }
-      // );
     }
   } else if (nextState === "OFF") {
     console.log("We are off now");
@@ -109,12 +101,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   // Based on the request
 
-  // if (request.sfx === "hello") {
-  //   playSound(1);
-  //   console.log("sound played");
-  // }
-
-  // TODO: have it automatically slot in there
   switch (request.sfx) {
     // first
     case "happyEmoji":

@@ -2,6 +2,27 @@
 
 This enhances Jitsi to add sfx to emojis, and more. (please clap)
 
+## How to use
+
+1. Install this by downloading the zip file and unpacking it, or use the [Official Chrome Store](https://chrome.google.com/webstore/detail/jitsi-enhancer/dmgjnkmnphhfphojhcmhmomkmfbpbdbj). 
+
+2. Pin the Extension on your toolbar for easy access.
+
+![](./images/readme-pin-it.png)
+
+3. When visiting a jitsi meeting (or self-hosted jitsi meeting), activate the extension.
+
+![](./images/readme-activate.png)
+
+4. You can use emojis. You can also use a few slash commands.
+
+For example:
+```
+/audienceClap
+```
+
+5. Most importantly, have fun!
+
 ## TODO 
 
 ### 0.6 Soundgarden
@@ -27,7 +48,7 @@ This enhances Jitsi to add sfx to emojis, and more. (please clap)
 
 ### 0.8 Pearl Jam
 - [x] restructure and use import statements https://developer.chrome.com/docs/extensions/reference/scripting/#files
-- [ ] update readme and improve documentation
+- [x] update readme and improve documentation
 - [x] Test on Mac
 - [x] separate service worker and background file
 - [ ] Fix time function - refactor generateSuccessful

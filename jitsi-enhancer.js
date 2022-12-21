@@ -14,7 +14,6 @@ const chatCallback = (mutations) => {
       // Get the new added node
       const childElement = mutation.addedNodes[0];
       const childText = childElement.querySelector(".usermessage");
-      // const wholeText = childText.innerText;
       const childHTML = childText.innerHTML;
       const wholeText = childHTML.substring(childHTML.indexOf("</span>") + 7);
 
