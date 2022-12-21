@@ -79,9 +79,23 @@ chrome.action.onClicked.addListener(async (tab) => {
         }
       );
 
+
     }
   } else if (nextState === "OFF") {
     console.log("We are off now");
+
+    await chrome.scripting.removeCSS({
+      files: ["main.css"],
+    });
+
+    // chrome.scripting.executeScript(
+    //   {
+    //     target: { tabId: tab.id },
+    //     files: ['jitsi-enhancer.js'],
+    //   },
+    //   () => {          // ...
+    //   }
+    // );
   }
 });
 

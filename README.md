@@ -51,10 +51,9 @@ For example:
 - [x] update readme and improve documentation
 - [x] Test on Mac
 - [x] separate service worker and background file
-- [ ] Fix time function - refactor generateSuccessful
+- [x] Fix time function - refactor generateSuccessful
 - [x] container screen full, you can’t full screen tiles.
-- [ ] turning it off doesn’t unhook things.
-- [ ] What about emoji’s in the name?
+- [x] What about emoji’s in the name? - update: no issues
 
 
 ### 0.9 Red Hot Chili Peppers
@@ -74,11 +73,14 @@ For example:
 3 - If you load the extension before the chat, it causes an error. 
 4 - what happens when you hit it on the intro screen?
 [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
+[ ] turning it off doesn’t unhook things?
+
 ## Unorganized
 1 - Set it up so animation doesn't play if you're not paying attention to the screen.
 2 - Session counter to see counts of things
 3 - Multi tap
 4 - Typescript?
+5 - Can't unload script if you disable? Figure out a [solution to turn off](https://stackoverflow.com/questions/18477910/chrome-extension-how-to-remove-content-script-after-injection). Maybe [move to manifest?](https://github.com/fregante/webext-dynamic-content-scripts/blob/main/how-to-add-github-enterprise-support-to-web-extensions.md)
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
