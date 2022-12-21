@@ -16,7 +16,7 @@ function playSound(src = "audio/ff-victory.wav", length = 4, volume = 0.5) {
 
   // set this string dynamically in your code, this is just an example
   // this will play success.wav at half the volume and close the popup after a second
-  url += `?volume=${volume}&src=${src}&length=${length * 1000}`;
+  url += `?volume=${volume}&src=${src}&length=${length * 1000 + 1000}`;
 
   console.log("building the query string");
   console.log(url);
@@ -110,7 +110,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "tongueEmoji":
     case "waveEmoji":
     case "blushEmoji":
-      playSound(`audio/${request.sfx}.wav`, 4);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
     // second row
@@ -121,7 +121,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "searchEmoji":
     case "loveEmoji":
     case "angelEmoji":
-      playSound(`audio/${request.sfx}.wav`, 4);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
     // third row
@@ -131,7 +131,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "clapEmoji":
     case "winkEmoji":
     case "beerEmoji":
-      playSound(`audio/${request.sfx}.wav`, 4);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
     // slash commands
@@ -139,7 +139,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "audienceClapSlash":
     case "bgJazzSlash":
     case "traceySlash":
-      playSound(`audio/${request.sfx}.wav`, 4);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
 

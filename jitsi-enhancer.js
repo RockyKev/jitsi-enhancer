@@ -7,7 +7,7 @@
 const SCRIPT_DEBUG = true;
 
 const chatCallback = (mutations) => {
-//   if (SCRIPT_DEBUG) console.log(mutations);
+  //   if (SCRIPT_DEBUG) console.log(mutations);
 
   for (let mutation of mutations) {
     if (mutation.type === "childList" && mutation.addedNodes[0]) {
@@ -22,15 +22,15 @@ const chatCallback = (mutations) => {
         return;
       }
 
-    //   SCRIPT_DEBUG && childElement
-    //     ? console.log(childElement)
-    //     : console.log("no childElement was returned");
-    //   SCRIPT_DEBUG && childText
-    //     ? console.dir(childText)
-    //     : console.log("no childText was returned");
-    //   SCRIPT_DEBUG && wholeText
-    //     ? console.dir(wholeText)
-    //     : console.log("no wholeText was returned");
+      //   SCRIPT_DEBUG && childElement
+      //     ? console.log(childElement)
+      //     : console.log("no childElement was returned");
+      //   SCRIPT_DEBUG && childText
+      //     ? console.dir(childText)
+      //     : console.log("no childText was returned");
+      //   SCRIPT_DEBUG && wholeText
+      //     ? console.dir(wholeText)
+      //     : console.log("no wholeText was returned");
 
       // TODO: Crazy Regex for Emoji checker?
       // https://stackoverflow.com/a/64007175/4096078
@@ -45,100 +45,100 @@ const chatCallback = (mutations) => {
       // SLASH COMMANDS
       if (wholeText.trim() === "/tracey") {
         console.log("I see a tracey!");
-        message = generateSuccessful(false, "traceySlash");
+        message = generateServiceWorkerMsg(false, "traceySlash", 2);
       }
       if (wholeText.trim() === "/audienceClap") {
         console.log("I see a audienceClap!");
         // 10 seconds
-        message = generateSuccessful(false, "audienceClapSlash");
+        message = generateServiceWorkerMsg(false, "audienceClapSlash", 10);
       }
       if (wholeText.trim() === "/bgJazz") {
         console.log("I see a bgJazz!");
         // 1:17 seconds
-        message = generateSuccessful(false, "bgJazzSlash");
+        message = generateServiceWorkerMsg(false, "bgJazzSlash", 77);
       }
       if (wholeText.trim() === "/yeah") {
         console.log("I see a yeah!");
         // 8 seconds
-        message = generateSuccessful(false, "yeahSlash");
+        message = generateServiceWorkerMsg(false, "yeahSlash", 8);
       }
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {
-        message = generateSuccessful("😃", "happyEmoji");
+        message = generateServiceWorkerMsg("😃", "happyEmoji", 1);
       }
       if (wholeText.includes("😦")) {
-        message = generateSuccessful("😦", "panicEmoji");
+        message = generateServiceWorkerMsg("😦", "panicEmoji", 1);
       }
       if (wholeText.includes("😄")) {
-        message = generateSuccessful("😄", "laughEmoji");
+        message = generateServiceWorkerMsg("😄", "laughEmoji", 1);
       }
       if (wholeText.includes("👍")) {
-        message = generateSuccessful("👍", "thumbsupEmoji");
+        message = generateServiceWorkerMsg("👍", "thumbsupEmoji", 1);
       }
       if (wholeText.includes("😛")) {
-        message = generateSuccessful("😛", "tongueEmoji");
+        message = generateServiceWorkerMsg("😛", "tongueEmoji", 1);
       }
       if (wholeText.includes("👋")) {
-        message = generateSuccessful("👋", "waveEmoji");
+        message = generateServiceWorkerMsg("👋", "waveEmoji", 4);
       }
       if (wholeText.includes("😊")) {
-        message = generateSuccessful("😊", "blushEmoji");
+        message = generateServiceWorkerMsg("😊", "blushEmoji", 3);
       }
 
       // second row
       if (wholeText.includes("🙂")) {
-        message = generateSuccessful("🙂", "smileEmoji");
+        message = generateServiceWorkerMsg("🙂", "smileEmoji", 1);
       }
       if (wholeText.includes("😱")) {
-        message = generateSuccessful("😱", "screamEmoji");
+        message = generateServiceWorkerMsg("😱", "screamEmoji", 1);
       }
 
       if (wholeText.includes("😗")) {
-        message = generateSuccessful("😗", "woopsEmoji");
+        message = generateServiceWorkerMsg("😗", "woopsEmoji", 1);
       }
       if (wholeText.includes("👎")) {
-        message = generateSuccessful("👎", "thumbsdownEmoji");
+        message = generateServiceWorkerMsg("👎", "thumbsdownEmoji", 1);
       }
 
       if (wholeText.includes("🔍")) {
-        message = generateSuccessful("🔍", "searchEmoji");
+        message = generateServiceWorkerMsg("🔍", "searchEmoji", 1);
       }
 
       if (wholeText.includes("❤️")) {
-        message = generateSuccessful("❤️", "loveEmoji");
+        message = generateServiceWorkerMsg("❤️", "loveEmoji", 1);
       }
 
       if (wholeText.includes("😇")) {
-        message = generateSuccessful("😇", "angelEmoji");
+        message = generateServiceWorkerMsg("😇", "angelEmoji", 2);
       }
 
       // third row
       if (wholeText.includes("😠")) {
-        message = generateSuccessful("😠", "annoyedEmoji");
+        message = generateServiceWorkerMsg("😠", "annoyedEmoji", 1);
       }
       if (wholeText.includes("👼")) {
-        message = generateSuccessful("👼", "angelbabyEmoji");
+        message = generateServiceWorkerMsg("👼", "angelbabyEmoji", 1);
       }
       if (wholeText.includes("😭")) {
-        message = generateSuccessful("😭", "cryingEmoji");
+        message = generateServiceWorkerMsg("😭", "cryingEmoji", 1);
       }
       if (wholeText.includes("👏")) {
-        message = generateSuccessful("👏", "clapEmoji");
+        message = generateServiceWorkerMsg("👏", "clapEmoji", 4);
       }
       if (wholeText.includes("😉")) {
-        message = generateSuccessful("😉", "winkEmoji");
+        message = generateServiceWorkerMsg("😉", "winkEmoji", 1);
       }
       if (wholeText.includes("🍺")) {
-        message = generateSuccessful("🍺", "beerEmoji");
+        message = generateServiceWorkerMsg("🍺", "beerEmoji", 1);
       }
 
       // 3 - send the thing
-    //   if (SCRIPT_DEBUG) {
-    //     console.log("The Message?");
-    //     console.log(message);
-    //     console.log(Object.keys(message).length !== 0);
-    //   }
+      //   if (SCRIPT_DEBUG) {
+      //     console.log("The Message?");
+      //     console.log(message);
+      //     console.log(Object.keys(message).length !== 0);
+      //   }
       if (Object.keys(message).length !== 0) {
         // if (SCRIPT_DEBUG) console.log("Sending Message:");
 
@@ -148,26 +148,27 @@ const chatCallback = (mutations) => {
       }
     }
   }
-}
+};
 
 // function that generates things
 // TODO: Rename this
-const generateSuccessful = (emoji, emojiType) => {
-  if (SCRIPT_DEBUG) console.log(`contains ${emojiType}`);
+const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
+  if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
 
   // 1 - Show the emoji floating from the bottom
   const videoWindow = document.querySelector(
     "#jitsi-enhance-animation-container"
   );
 
-  if (videoWindow && emoji) {
+  // If it's an emoji, make an image
+  if (videoWindow && theEmoji) {
     // create a visual UI element
     const emojiElement = document.createElement("div");
     const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
 
     emojiElement.setAttribute("id", emojiElementID);
     emojiElement.classList.add("jitsi-enhance-animation-emoji");
-    emojiElement.innerText = emoji;
+    emojiElement.innerText = theEmoji;
 
     videoWindow.append(emojiElement);
 
@@ -187,7 +188,10 @@ const generateSuccessful = (emoji, emojiType) => {
   }
 
   // return the Object
-  return { sfx: emojiType };
+  return {
+    sfx: sfxName,
+    sfxLength: sfxLength,
+  };
 };
 
 function init() {
@@ -255,7 +259,6 @@ function init() {
   };
   observer.observe(chatWindow, options);
 }
-
 
 // run the initalization
 init();

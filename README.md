@@ -78,6 +78,7 @@ For example:
 1 - Set it up so animation doesn't play if you're not paying attention to the screen.
 2 - Session counter to see counts of things
 3 - Multi tap
+4 - Typescript?
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
