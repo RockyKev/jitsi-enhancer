@@ -1,40 +1,44 @@
 #jitsi-enhance-animation-container {
-
   /* border-top: 20px solid green; */
   /* border-right: 3px solid orange;
   border-bottom: 3px solid yellow; */
-  /* border-left: 3px solid green; */
 
-  border-radius: 5px;
+  background: transparent;
+  width: 100%;
   height: 95vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position: static;
+  position: absolute;
 }
 
 #jitsi-enhance-animation-container fieldset {
-  border: 10px solid transparent; 
-	border-top-color: green; 
+  border: 10px solid transparent;
+  border-top-color: green;
   width: 55%;
   position: absolute;
   top: 5px;
+  z-index: 99999;
+  -moz-animation: color-shift 4s cubic-bezier(0, 0.21, 0.32, 1.34) infinite;
+  -webkit-animation: color-shift 4s cubic-bezier(0, 0.21, 0.32, 1.34) infinite;
+  animation: color-shift 4s cubic-bezier(0, 0.21, 0.32, 1.34) infinite;
 }
 
 #jitsi-enhance-animation-container fieldset legend {
-	font: 15pt/0 'Averia Serif Libre'; 
-	margin: auto; 
-	padding: 0 4px; 
-} 
+  font: 15pt/0 "Averia Serif Libre";
+  margin: auto;
+  padding: 0 4px;
+}
 
 .jitsi-enhance-animation-emoji {
   /* TODO: VARIABLE via JS */
   --emoji-size: 2rem;
   --emoji-rotation: 20deg;
   /* --animation-count: infinite; */
-    --animation-count: 1;
+  --animation-count: 1;
 
+  z-index: 99999;
   height: 200px;
   font-size: var(--emoji-size);
   position: absolute;
@@ -51,8 +55,28 @@
     var(--animation-count);
   animation: jump-up-and-fade 4s cubic-bezier(0, 0.21, 0.32, 1.34)
     var(--animation-count);
-    animation-fill-mode: forwards; 
+  animation-fill-mode: forwards;
+}
 
+@keyframes color-shift {
+  0% {
+    border-top-color: green;
+  }
+  20% {
+    border-top-color: blue;
+  }
+  40% {
+    border-top-color: red;
+  }
+  60% {
+    border-top-color: purple;
+  }
+  80% {
+    border-top-color: yellow;
+  }
+  100% {
+    border-top-color: pink;
+  }
 }
 
 @keyframes jump-up-and-fade {

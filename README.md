@@ -28,10 +28,13 @@ This enhances Jitsi to add sfx to emojis, and more. (please clap)
 ### 0.8 Pearl Jam
 - [x] restructure and use import statements https://developer.chrome.com/docs/extensions/reference/scripting/#files
 - [ ] update readme and improve documentation
-- [ ] Test on Mac
-- [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
-- [ ] separate service worker and background file
+- [x] Test on Mac
+- [x] separate service worker and background file
 - [ ] Fix time function - refactor generateSuccessful
+- [x] container screen full, you can’t full screen tiles.
+- [ ] turning it off doesn’t unhook things.
+- [ ] What about emoji’s in the name?
+
 
 ### 0.9 Red Hot Chili Peppers
 - [ ] add super animation when event it clicked X times.
@@ -49,13 +52,18 @@ This enhances Jitsi to add sfx to emojis, and more. (please clap)
 1 - What happens when multiple emojis are in the same sentence?
 3 - If you load the extension before the chat, it causes an error. 
 4 - what happens when you hit it on the intro screen?
+[ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
+## Unorganized
+1 - Set it up so animation doesn't play if you're not paying attention to the screen.
+2 - Session counter to see counts of things
+3 - Multi tap
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
 
      
 ## Screenshot
-![screenshot](/images/screenshot.png)
+![screenshot](./images/screenshot.png)
 
 
 ## Attribution
