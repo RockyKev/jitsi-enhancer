@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * The Service Worker
  * Debug messages show up in chrome://extensions/
  * Visit the Extension -> Inspect Views: "Service Worker"
- * 
+ *
  */
 
 const meetingUrl1 = "https://meet.jit.si/";
@@ -11,7 +11,7 @@ const meetingUrl2 = "https://meet.";
 const EXTENSION_DEBUG = true;
 
 // Play Sound
-function playSound(src = "audio/ff-victory.wav", length = 4, volume = 0.5) {
+function playSound(src = "audio/ffvictorySlash.wav", length = 4, volume = 0.5) {
   let url = chrome.runtime.getURL("background-window/audio.html");
 
   // set this string dynamically in your code, this is just an example
@@ -39,7 +39,6 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-
 // Chrome Extension Init
 chrome.action.onClicked.addListener(async (tab) => {
   console.log("event listener started");
@@ -54,7 +53,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     // Next state will always be the opposite
     const nextState = prevState === "ON" ? "OFF" : "ON";
 
-    console.log(nextState)
+    console.log(nextState);
 
     // Set the action badge to the next state
     await chrome.action.setBadgeText({
@@ -66,26 +65,25 @@ chrome.action.onClicked.addListener(async (tab) => {
       console.log("Execute Script!");
 
       await chrome.scripting.insertCSS({
-        files: ["main.css"],
+        files: ["./service-worker/main.css"],
         target: { tabId: tab.id },
       });
-  
+
       chrome.scripting.executeScript(
         {
           target: { tabId: tab.id },
-          files: ['jitsi-enhancer.js'],
+          files: ["./service-worker/jitsi-enhancer.js"],
         },
-        () => {          // ...
+        () => {
+          // ...
         }
       );
-
-
     }
   } else if (nextState === "OFF") {
     console.log("We are off now");
 
     await chrome.scripting.removeCSS({
-      files: ["main.css"],
+      files: ["./service-worker/main.css"],
     });
 
     // chrome.scripting.executeScript(
@@ -98,9 +96,6 @@ chrome.action.onClicked.addListener(async (tab) => {
     // );
   }
 });
-
-
-
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.groupCollapsed();
@@ -153,9 +148,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "audienceClapSlash":
     case "bgJazzSlash":
     case "traceySlash":
+    case "dohSlash":
+    case "enhanceSlash":
+    case "leeroyJenkinsSlash":
+    case "woohooSlash":
+    case "ffvictorySlash":
       playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
-
 
     default:
       console.error(`${request.sfx} doesn't have anything`);

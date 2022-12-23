@@ -1,0 +1,26 @@
+{
+  "name": "jitsi-enhancer",
+  "version": "0.8.2",
+  "description": "\"This enhances Jitsi to add sfx to emojis, and more. (please clap)\"",
+  "main": "main.js",
+  "scripts": {
+    "zip": "zip -r jitsi-enhancer.zip background-window/ images/ service-worker/ manifest.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RockyKev/chrome-extension.git"
+  },
+  "keywords": [
+    "fun",
+    "jitsi",
+    "chrome",
+    "extension"
+  ],
+  "author": "Rocky Kev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RockyKev/chrome-extension/issues"
+  },
+  "homepage": "https://github.com/RockyKev/chrome-extension#readme"
+
+}

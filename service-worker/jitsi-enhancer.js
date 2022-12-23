@@ -49,19 +49,43 @@ const chatCallback = (mutations) => {
       }
       if (wholeText.trim() === "/audienceClap") {
         console.log("I see a audienceClap!");
-        // 10 seconds
         message = generateServiceWorkerMsg(false, "audienceClapSlash", 10);
       }
       if (wholeText.trim() === "/bgJazz") {
         console.log("I see a bgJazz!");
-        // 1:17 seconds
         message = generateServiceWorkerMsg(false, "bgJazzSlash", 77);
       }
       if (wholeText.trim() === "/yeah") {
         console.log("I see a yeah!");
-        // 8 seconds
         message = generateServiceWorkerMsg(false, "yeahSlash", 8);
       }
+
+      if (wholeText.trim() === "/doh") {
+        console.log("I see a doh!");
+        message = generateServiceWorkerMsg(false, "dohSlash", 1);
+      }
+
+      if (wholeText.trim() === "/leeroyJenkins") {
+        console.log("I see a leeroyJenkins!");
+        message = generateServiceWorkerMsg(false, "leeroyJenkinsSlash", 5);
+      }
+
+      if (wholeText.trim() === "/enhance") {
+        console.log("I see a enhance!");
+        message = generateServiceWorkerMsg(false, "enhanceSlash", 1);
+      }
+
+      if (wholeText.trim() === "/woohoo") {
+        console.log("I see a woohoo!");
+        message = generateServiceWorkerMsg(false, "woohooSlash", 1);
+      }
+
+
+      if (wholeText.trim() === "/ff" || wholeText.trim() === '/ffvictory') {
+        console.log("I see a ff!");
+        message = generateServiceWorkerMsg(false, "ffvictorySlash", 5);
+      }
+
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {

@@ -57,6 +57,8 @@ For example:
 
 
 ### 0.9 Red Hot Chili Peppers
+- [x] Add new sfxs
+- [x] Zip feature
 - [ ] add super animation when event it clicked X times.
 - [ ] Add a tracker of how many emojis were clicked.
 - [ ] Add twitch-style 'crazy border' when something happens
@@ -81,6 +83,15 @@ For example:
 3 - Multi tap
 4 - Typescript?
 5 - Can't unload script if you disable? Figure out a [solution to turn off](https://stackoverflow.com/questions/18477910/chrome-extension-how-to-remove-content-script-after-injection). Maybe [move to manifest?](https://github.com/fregante/webext-dynamic-content-scripts/blob/main/how-to-add-github-enterprise-support-to-web-extensions.md)
+If you uppercut enough, the 'toasty' guy pops out.https://codepen.io/smnarnold/pen/PoWWRRv?editors=0010And fireworks.https://codepen.io/yshlin/pen/WNMmQX
+if you turn it off, a alert pops up saying that you'll have to restart the browser?
+Service worker communicating via sessionStorage? Or just sending messages back and forth?
+
+/leroyJenkins - https://www.soundboard.com/sb/sound/890785
+/doh - https://www.soundboard.com/sb/doh_audio_clip_homer
+/woohoo - https://www.voicy.network/clips/0g02Uq3p6UWsGxvZm36BwA
+/enhance - https://movie-sounds.org/comedy-movie-sounds/quotes-with-sound-clips-from-super-troopers/enhance-enhance-enhance-zjv
+
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
