@@ -59,8 +59,9 @@ For example:
 ### 0.9 Red Hot Chili Peppers
 - [x] Add new sfxs
 - [x] Zip feature
+- [ ] send messages from service worker to client.
 - [ ] add super animation when event it clicked X times.
-- [ ] Add a tracker of how many emojis were clicked.
+- [x] Add a tracker of how many emojis were clicked.
 - [ ] Add twitch-style 'crazy border' when something happens
 - [ ] unhook if there's an accident. 
 - [ ] Only create one "jitsi-extend-animation-container"

@@ -80,12 +80,10 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "woohooSlash", 1);
       }
 
-
-      if (wholeText.trim() === "/ff" || wholeText.trim() === '/ffvictory') {
+      if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
         console.log("I see a ff!");
         message = generateServiceWorkerMsg(false, "ffvictorySlash", 5);
       }
-
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {
@@ -163,7 +161,7 @@ const chatCallback = (mutations) => {
       //     console.log(message);
       //     console.log(Object.keys(message).length !== 0);
       //   }
-      if (Object.keys(message).length !== 0) {
+      if (Object.keys(message) && Object.keys(message).length !== 0) {
         // if (SCRIPT_DEBUG) console.log("Sending Message:");
 
         (async () => {
@@ -174,58 +172,125 @@ const chatCallback = (mutations) => {
   }
 };
 
-// function that generates things
-// TODO: Rename this
+/**
+ * Session Storage
+ * @constructor
+ * @param {string} dataLabel - the label of the data being passed
+ * @param {number|boolean} dataValue - the data itself
+ * @param {string} action - update, add, subtract 
+ * @param {string} storageName - the session data
+ */
+
+const saveSessionData = (dataLabel, dataValue, action = 'update', storageName = 'jitsi-enhancer-emojis') => {
+
+  let sessionData = {};
+
+  if (!sessionStorage.getItem(storageName)) {
+
+    // create the item
+    sessionStorage.setItem(storageName, JSON.stringify(sessionData));
+  }
+
+    // 1 - get the item & unstringify
+    sessionData = JSON.parse(sessionStorage.getItem(storageName));
+
+    // 2 - see if the item exists
+    if (sessionData[dataLabel]) {
+      switch (action) {
+        case 'update':
+          sessionData[dataLabel] = dataValue; 
+          break;
+        case 'add':
+          sessionData[dataLabel] += dataValue; 
+          break;
+        case 'subtract':
+          sessionData[dataLabel] -= dataValue; 
+          break;
+      }
+    } else {
+      sessionData[dataLabel] = dataValue; 
+    }
+
+    // 3 - rebuild the item
+    sessionStorage.setItem(storageName, JSON.stringify(sessionData));
+
+    // 4 - count how many times this has occured if it's emojis/commands
+    if (storageName === 'jitsi-enhancer-emojis') {
+      // Add to the total
+      // TODO: too heavy? Maybe just use a regular ++?
+      sessionData['emojiCount'] = Object.values(sessionData).reduce((a, b) => a + b, 0);
+    }
+}
+
+// const isPartyMode = (sessionValue) => {
+
+
+//   // 1 - find the item
+//   // const item = JSON.parse(sessionStorage.getItem('jitsi-enhancer-emojis'));
+
+//   // 2 - 
+
+// }
+
 const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
   if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
 
-  // 1 - Show the emoji floating from the bottom
-  const videoWindow = document.querySelector(
-    "#jitsi-enhance-animation-container"
-  );
+  // 1 - If it's an emoji - Show the emoji floating from the bottom
+  if (theEmoji) {
+    const videoWindow = document.querySelector(
+      "#jitsi-enhance-animation-container"
+    );
 
-  // If it's an emoji, make an image
-  if (videoWindow && theEmoji) {
-    // create a visual UI element
-    const emojiElement = document.createElement("div");
-    const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
+    if (videoWindow) {
+      // create a visual UI element
+      const emojiElement = document.createElement("div");
+      const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
 
-    emojiElement.setAttribute("id", emojiElementID);
-    emojiElement.classList.add("jitsi-enhance-animation-emoji");
-    emojiElement.innerText = theEmoji;
+      emojiElement.setAttribute("id", emojiElementID);
+      emojiElement.classList.add("jitsi-enhance-animation-emoji");
+      emojiElement.innerText = theEmoji;
 
-    videoWindow.append(emojiElement);
+      videoWindow.append(emojiElement);
 
-    // randomize the element
-    const element = document.getElementById(emojiElementID);
-    const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
-    const number = numbers[Math.floor(Math.random() * numbers.length)];
-    element.style.setProperty("--emoji-rotation", `${number}deg`);
+      // randomize the element
+      const element = document.getElementById(emojiElementID);
+      const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
+      const number = numbers[Math.floor(Math.random() * numbers.length)];
+      element.style.setProperty("--emoji-rotation", `${number}deg`);
 
-    console.log("number", number);
-    // TODO: would be nice to destroy it after animation is over
-    // destroy the element after 4 seconds
-    setTimeout(() => {
-      element.remove();
-      if (SCRIPT_DEBUG) console.log(`Element destroyed`);
-    }, 4000);
-  }
+      // TODO: would be nice to destroy it after animation is over
 
-  // return the Object
+      // destroy the element after 4 seconds
+      setTimeout(() => {
+        element.remove();
+        if (SCRIPT_DEBUG) console.log(`Element destroyed`);
+      }, 4000);
+    } else {
+      console.warning("No window was found.");
+    }
+
+  } 
+
+  // 2 - sessionStorage of the event
+  saveSessionData(sfxName, 1, 'add');
+
+  // 3 - return the Object
   return {
     sfx: sfxName,
     sfxLength: sfxLength,
   };
 };
 
-function init() {
+const init = () => {
   console.log("initializing");
   if (SCRIPT_DEBUG) console.clear();
 
   /* Save Sessions */
-  if (!sessionStorage.getItem("jitsi-enhancer")) {
-    sessionStorage.setItem("jitsi-enhancer", "ready");
-  }
+  // TODO: Have it count all the previous messages and automatically track that. 
+
+  // if (!sessionStorage.getItem("jitsi-enhancer")) {
+  //   sessionStorage.setItem("jitsi-enhancer", "ready");
+  // }
 
   /* Inject CSS */
   const videoWindow = document.querySelector("#videospace");
@@ -282,7 +347,7 @@ function init() {
     characterDataOldValue: true,
   };
   observer.observe(chatWindow, options);
-}
+};
 
 // run the initalization
 init();
