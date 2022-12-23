@@ -87,6 +87,7 @@ const chatCallback = (mutations) => {
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {
+        createFireworks(1000);
         message = generateServiceWorkerMsg("😃", "happyEmoji", 1);
       }
       if (wholeText.includes("😦")) {
@@ -177,71 +178,122 @@ const chatCallback = (mutations) => {
  * @constructor
  * @param {string} dataLabel - the label of the data being passed
  * @param {number|boolean} dataValue - the data itself
- * @param {string} action - update, add, subtract 
+ * @param {string} action - update, add, subtract
  * @param {string} storageName - the session data
  */
 
-const saveSessionData = (dataLabel, dataValue, action = 'update', storageName = 'jitsi-enhancer-emojis') => {
-
+const saveSessionData = (
+  dataLabel,
+  dataValue,
+  action = "update",
+  storageName = "jitsi-enhancer-emojis"
+) => {
   let sessionData = {};
 
   if (!sessionStorage.getItem(storageName)) {
-
     // create the item
     sessionStorage.setItem(storageName, JSON.stringify(sessionData));
   }
 
-    // 1 - get the item & unstringify
-    sessionData = JSON.parse(sessionStorage.getItem(storageName));
+  // 1 - get the item & unstringify
+  sessionData = JSON.parse(sessionStorage.getItem(storageName));
 
-    // 2 - see if the item exists
-    if (sessionData[dataLabel]) {
-      switch (action) {
-        case 'update':
-          sessionData[dataLabel] = dataValue; 
-          break;
-        case 'add':
-          sessionData[dataLabel] += dataValue; 
-          break;
-        case 'subtract':
-          sessionData[dataLabel] -= dataValue; 
-          break;
-      }
-    } else {
-      sessionData[dataLabel] = dataValue; 
+  // 2 - see if the item exists
+  if (sessionData[dataLabel]) {
+    switch (action) {
+      case "update":
+        sessionData[dataLabel] = dataValue;
+        break;
+      case "add":
+        sessionData[dataLabel] += dataValue;
+        break;
+      case "subtract":
+        sessionData[dataLabel] -= dataValue;
+        break;
     }
+  } else {
+    sessionData[dataLabel] = dataValue;
+  }
 
-    // 3 - rebuild the item
-    sessionStorage.setItem(storageName, JSON.stringify(sessionData));
+  // 3 - rebuild the item
+  sessionStorage.setItem(storageName, JSON.stringify(sessionData));
 
-    // 4 - count how many times this has occured if it's emojis/commands
-    if (storageName === 'jitsi-enhancer-emojis') {
-      // Add to the total
-      // TODO: too heavy? Maybe just use a regular ++?
-      sessionData['emojiCount'] = Object.values(sessionData).reduce((a, b) => a + b, 0);
-    }
-}
+  // 4 - count how many times this has occured if it's emojis/commands
+  if (storageName === "jitsi-enhancer-emojis") {
+    // Add to the total
+    // TODO: too heavy? Maybe just use a regular ++?
+    sessionData["emojiCount"] = Object.values(sessionData).reduce(
+      (a, b) => a + b,
+      0
+    );
+  }
+};
 
-// const isPartyMode = (sessionValue) => {
+const isPartyMode = (sessionValue) => {
+  // 1 - find the item
+  const session = JSON.parse(sessionStorage.getItem("jitsi-enhancer-emojis"));
+  const threshold = 2;
+
+  // 2 - if there's 11, 22... etc... PARTY MODE
+  return session[sessionValue] % threshold === 0;
+};
+
+const createFireworks = (length = 1) => {
+  const videoWindow = document.querySelector(
+    "#jitsi-enhance-animation-container"
+  );
 
 
-//   // 1 - find the item
-//   // const item = JSON.parse(sessionStorage.getItem('jitsi-enhancer-emojis'));
+  console.log("we're making fireworks -- START")
+  if (!videoWindow) return;
 
-//   // 2 - 
+  // Make this shape
+  // <div class="pyro">
+  //   <div class="before"></div>
+  //   <div class="after"></div>
+  // </div>
 
-// }
+  // make parent
+  const fireworksParent = document.createElement("div");
+  // const fireworksParentID = `firework-id-${Date.now()}`; // TODO: Poor Man's ID generator
+  // fireworksParent.setAttribute("id", fireworksParentID);
+  fireworksParent.classList.add("pyro");
+  // make child
+  const fireworksChildBefore = document.createElement("div");
+  const fireworksChildAfter = document.createElement("div");
+  fireworksChildBefore.classList.add("before");
+  fireworksChildAfter.classList.add("after");
+
+  // tie child to parent
+  fireworksParent.append(fireworksChildBefore);
+  fireworksParent.append(fireworksChildAfter);
+
+  console.log("we're making fireworks -- SHOW")
+  // make it visible but then destroy it
+  videoWindow.append(fireworksParent);
+
+  // destroy the element after X seconds
+  setTimeout(() => {
+    console.log("we're making fireworks -- DESTROY");
+    fireworksParent.remove();
+  }, length * 1000);
+};
+
+
 
 const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
   if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
 
   // 1 - If it's an emoji - Show the emoji floating from the bottom
   if (theEmoji) {
+    // TODO: make this into it's own function
+
     const videoWindow = document.querySelector(
       "#jitsi-enhance-animation-container"
     );
 
     if (videoWindow) {
+      //isPartyMode
       // create a visual UI element
       const emojiElement = document.createElement("div");
       const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
@@ -253,7 +305,7 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
       videoWindow.append(emojiElement);
 
       // randomize the element
-      const element = document.getElementById(emojiElementID);
+      const element = document.getElementById(emojiElementID); // TODO: Aren't I already targetting the element?
       const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
       const number = numbers[Math.floor(Math.random() * numbers.length)];
       element.style.setProperty("--emoji-rotation", `${number}deg`);
@@ -268,11 +320,10 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
     } else {
       console.warning("No window was found.");
     }
-
-  } 
+  }
 
   // 2 - sessionStorage of the event
-  saveSessionData(sfxName, 1, 'add');
+  saveSessionData(sfxName, 1, "add");
 
   // 3 - return the Object
   return {
@@ -286,7 +337,7 @@ const init = () => {
   if (SCRIPT_DEBUG) console.clear();
 
   /* Save Sessions */
-  // TODO: Have it count all the previous messages and automatically track that. 
+  // TODO: Have it count all the previous messages and automatically track that.
 
   // if (!sessionStorage.getItem("jitsi-enhancer")) {
   //   sessionStorage.setItem("jitsi-enhancer", "ready");
