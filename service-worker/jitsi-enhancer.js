@@ -87,8 +87,7 @@ const chatCallback = (mutations) => {
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {
-        createFireworks(1000);
-        message = generateServiceWorkerMsg("😃", "happyEmoji", 1);
+        message = generateServiceWorkerMsg("😃", "happyEmoji", 2);
       }
       if (wholeText.includes("😦")) {
         message = generateServiceWorkerMsg("😦", "panicEmoji", 1);
@@ -173,8 +172,9 @@ const chatCallback = (mutations) => {
   }
 };
 
+// TODO: Move to utils
 /**
- * Session Storage
+ * Session Storage -
  * @constructor
  * @param {string} dataLabel - the label of the data being passed
  * @param {number|boolean} dataValue - the data itself
@@ -215,11 +215,11 @@ const saveSessionData = (
     sessionData[dataLabel] = dataValue;
   }
 
-  // 3 - rebuild the item
-  sessionStorage.setItem(storageName, JSON.stringify(sessionData));
-
-  // 4 - count how many times this has occured if it's emojis/commands
+  // 3 - count how many times this has occured if it's emojis/commands
   if (storageName === "jitsi-enhancer-emojis") {
+    // zero out the total the count
+    sessionData["emojiCount"] = 0;
+
     // Add to the total
     // TODO: too heavy? Maybe just use a regular ++?
     sessionData["emojiCount"] = Object.values(sessionData).reduce(
@@ -227,12 +227,51 @@ const saveSessionData = (
       0
     );
   }
+
+  // 4 - rebuild the item
+  sessionStorage.setItem(storageName, JSON.stringify(sessionData));
+};
+
+// TODO: Move to utils.js
+// yoink: https://dev.to/soorajsnblaze333/generic-snippets-dom-element-creation-3go9
+const createElement = ({
+  type,
+  styles,
+  attributes,
+  props,
+  eventHandlers,
+  appendTo,
+}) => {
+  let elementType = type || "div";
+  let elementStyles = styles || {};
+  let elementAttributes = attributes || {};
+  let elementProps = props || {};
+  let elementEventHandlers = eventHandlers || {};
+  let elementAppendTo = appendTo || "body";
+
+  let element = document.createElement(elementType);
+  for (let key in elementStyles) {
+    element.style[key] = elementStyles[key];
+  }
+  for (let key in elementAttributes) {
+    element.setAttribute(key, elementAttributes[key]);
+  }
+  for (let key in elementProps) {
+    element[key] = elementProps[key];
+  }
+  for (let key in elementEventHandlers) {
+    element.addEventListener(key, elementEventHandlers[key]);
+  }
+  document.querySelector(elementAppendTo).append(element);
+  return element;
 };
 
 const isPartyMode = (sessionValue) => {
+  if (!sessionStorage.getItem("jitsi-enhancer-emojis")) return;
+
   // 1 - find the item
   const session = JSON.parse(sessionStorage.getItem("jitsi-enhancer-emojis"));
-  const threshold = 2;
+  const threshold = 11;
 
   // 2 - if there's 11, 22... etc... PARTY MODE
   return session[sessionValue] % threshold === 0;
@@ -243,8 +282,6 @@ const createFireworks = (length = 1) => {
     "#jitsi-enhance-animation-container"
   );
 
-
-  console.log("we're making fireworks -- START")
   if (!videoWindow) return;
 
   // Make this shape
@@ -254,32 +291,91 @@ const createFireworks = (length = 1) => {
   // </div>
 
   // make parent
-  const fireworksParent = document.createElement("div");
-  // const fireworksParentID = `firework-id-${Date.now()}`; // TODO: Poor Man's ID generator
-  // fireworksParent.setAttribute("id", fireworksParentID);
-  fireworksParent.classList.add("pyro");
-  // make child
-  const fireworksChildBefore = document.createElement("div");
-  const fireworksChildAfter = document.createElement("div");
-  fireworksChildBefore.classList.add("before");
-  fireworksChildAfter.classList.add("after");
+  const fireworksParentID = `firework-id-${Date.now()}`;
+  const fireworksParent = createElement({
+    type: "div",
+    attributes: {
+      class: "pyro",
+      id: fireworksParentID,
+    },
+    appendTo: `#${videoWindow.id}`,
+  });
 
-  // tie child to parent
-  fireworksParent.append(fireworksChildBefore);
-  fireworksParent.append(fireworksChildAfter);
-
-  console.log("we're making fireworks -- SHOW")
-  // make it visible but then destroy it
-  videoWindow.append(fireworksParent);
+  // make children
+  const fireworksBefore = createElement({
+    type: "div",
+    attributes: {
+      class: "before",
+    },
+    appendTo: `#${fireworksParentID}`,
+  });
+  const fireworksAfter = createElement({
+    type: "div",
+    attributes: {
+      class: "after",
+    },
+    appendTo: `#${fireworksParentID}`,
+  });
 
   // destroy the element after X seconds
   setTimeout(() => {
-    console.log("we're making fireworks -- DESTROY");
     fireworksParent.remove();
   }, length * 1000);
 };
 
+const createFloatingEmoji = (animationEmoji, length = 4) => {
+  const videoWindow = document.querySelector(
+    "#jitsi-enhance-animation-container"
+  );
 
+  if (!videoWindow) return;
+
+  // create a visual UI element
+  // TODO: refactor using the createElement function
+  const emojiElement = document.createElement("div");
+  const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
+
+  emojiElement.setAttribute("id", emojiElementID);
+  emojiElement.classList.add("jitsi-enhance-animation-emoji");
+  emojiElement.innerText = animationEmoji;
+
+  videoWindow.append(emojiElement);
+
+  // randomize the element
+  const element = document.getElementById(emojiElementID);
+  const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
+  const number = numbers[Math.floor(Math.random() * numbers.length)];
+  element.style.setProperty("--emoji-rotation", `${number}deg`);
+
+  // TODO: would be nice to destroy it after animation is over
+  // destroy the element after 4 seconds
+  setTimeout(() => {
+    element.remove();
+  }, length * 1000);
+};
+
+// const createSuperText = (content, length = 5) => {
+//   const videoWindow = document.querySelector(
+//     "#jitsi-enhance-animation-container"
+//   );
+
+//   if (!videoWindow) return;
+
+//   const Text = createElement({
+//     type: "p",
+//     attributes: {
+//       class: "super-text",
+//     },
+//     props: {
+//       innerText: content,
+//     },
+//     appendTo: `#${videoWindow.id}`,
+//   });
+
+//   setTimeout(() => {
+//     Text.remove();
+//   }, length * 1000);
+// };
 
 const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
   if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
@@ -294,29 +390,11 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
 
     if (videoWindow) {
       //isPartyMode
-      // create a visual UI element
-      const emojiElement = document.createElement("div");
-      const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
+      if (isPartyMode("emojiCount")) {
+        createFireworks(4); // TODO: Do something better with this
+      }
 
-      emojiElement.setAttribute("id", emojiElementID);
-      emojiElement.classList.add("jitsi-enhance-animation-emoji");
-      emojiElement.innerText = theEmoji;
-
-      videoWindow.append(emojiElement);
-
-      // randomize the element
-      const element = document.getElementById(emojiElementID); // TODO: Aren't I already targetting the element?
-      const numbers = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
-      const number = numbers[Math.floor(Math.random() * numbers.length)];
-      element.style.setProperty("--emoji-rotation", `${number}deg`);
-
-      // TODO: would be nice to destroy it after animation is over
-
-      // destroy the element after 4 seconds
-      setTimeout(() => {
-        element.remove();
-        if (SCRIPT_DEBUG) console.log(`Element destroyed`);
-      }, 4000);
+      createFloatingEmoji(theEmoji);
     } else {
       console.warning("No window was found.");
     }

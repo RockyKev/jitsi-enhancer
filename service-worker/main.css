@@ -104,8 +104,63 @@
 }
 
 
+/* TODO: Another thing to replace */
+/* 
+* Scroll Text
+* https://codepen.io/hubspot/pen/KKWxwLR?editors=1100
+* 
+*/
+
+#scroll-container {
+  border: 3px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.scroll-text {
+  text-align: right;
+
+  /* animation properties */
+  -moz-transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  
+  -moz-animation: scroll-text-right 15s linear infinite;
+  -webkit-animation: scroll-text-right 15s linear infinite;
+  animation: scroll-text-right 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes scroll-text-right {
+  from { -moz-transform: translateX(-100%); }
+  to { -moz-transform: translateX(100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes scroll-text-right {
+  from { -webkit-transform: translateX(-100%); }
+  to { -webkit-transform: translateX(100%); }
+}
+
+@keyframes scroll-text-right {
+  from {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  to {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
 /* TODO: Replace with animation library */
-/* https://codepen.io/yshlin/pen/WNMmQX?editors=1100 */
+/* 
+* Firework animation
+* https://codepen.io/yshlin/pen/WNMmQX?editors=1100 
+* 
+*/
 
 .pyro {
   position: relative;
