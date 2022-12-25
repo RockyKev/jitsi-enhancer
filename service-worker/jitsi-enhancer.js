@@ -44,115 +44,126 @@ const chatCallback = (mutations) => {
 
       // SLASH COMMANDS
       if (wholeText.trim() === "/tracey") {
-        console.log("I see a tracey!");
-        message = generateServiceWorkerMsg(false, "traceySlash", 2);
+        message = generateServiceWorkerMsg(false, "traceySlash", 2, false);
       }
       if (wholeText.trim() === "/audienceClap") {
-        console.log("I see a audienceClap!");
-        message = generateServiceWorkerMsg(false, "audienceClapSlash", 10);
+        message = generateServiceWorkerMsg(
+          false,
+          "audienceClapSlash",
+          10,
+          false
+        );
       }
       if (wholeText.trim() === "/bgJazz") {
-        console.log("I see a bgJazz!");
-        message = generateServiceWorkerMsg(false, "bgJazzSlash", 77);
+        message = generateServiceWorkerMsg(false, "bgJazzSlash", 77, false);
       }
       if (wholeText.trim() === "/yeah") {
-        console.log("I see a yeah!");
-        message = generateServiceWorkerMsg(false, "yeahSlash", 8);
+        message = generateServiceWorkerMsg(false, "yeahSlash", 8, false);
       }
 
       if (wholeText.trim() === "/doh") {
-        console.log("I see a doh!");
-        message = generateServiceWorkerMsg(false, "dohSlash", 1);
+        message = generateServiceWorkerMsg(false, "dohSlash", 1, false);
       }
 
       if (wholeText.trim() === "/leeroyJenkins") {
-        console.log("I see a leeroyJenkins!");
-        message = generateServiceWorkerMsg(false, "leeroyJenkinsSlash", 5);
+        message = generateServiceWorkerMsg(
+          false,
+          "leeroyJenkinsSlash",
+          5,
+          false
+        );
       }
 
       if (wholeText.trim() === "/enhance") {
-        console.log("I see a enhance!");
-        message = generateServiceWorkerMsg(false, "enhanceSlash", 1);
+        message = generateServiceWorkerMsg(false, "enhanceSlash", 1, false);
       }
 
       if (wholeText.trim() === "/woohoo") {
-        console.log("I see a woohoo!");
-        message = generateServiceWorkerMsg(false, "woohooSlash", 1);
+        message = generateServiceWorkerMsg(false, "woohooSlash", 1, false);
       }
 
       if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
-        console.log("I see a ff!");
-        message = generateServiceWorkerMsg(false, "ffvictorySlash", 5);
+        message = generateServiceWorkerMsg(false, "ffvictorySlash", 5, false);
       }
 
       // EMOJI COMMANDS
       if (wholeText.includes("😃")) {
-        message = generateServiceWorkerMsg("😃", "happyEmoji", 2);
+        message = generateServiceWorkerMsg("😃", "happyEmoji", 2, wholeText);
       }
       if (wholeText.includes("😦")) {
-        message = generateServiceWorkerMsg("😦", "panicEmoji", 1);
+        message = generateServiceWorkerMsg("😦", "panicEmoji", 1, wholeText);
       }
       if (wholeText.includes("😄")) {
-        message = generateServiceWorkerMsg("😄", "laughEmoji", 1);
+        message = generateServiceWorkerMsg("😄", "laughEmoji", 1, wholeText);
       }
       if (wholeText.includes("👍")) {
-        message = generateServiceWorkerMsg("👍", "thumbsupEmoji", 1);
+        message = generateServiceWorkerMsg("👍", "thumbsupEmoji", 1, wholeText);
       }
       if (wholeText.includes("😛")) {
-        message = generateServiceWorkerMsg("😛", "tongueEmoji", 1);
+        message = generateServiceWorkerMsg("😛", "tongueEmoji", 1, wholeText);
       }
       if (wholeText.includes("👋")) {
-        message = generateServiceWorkerMsg("👋", "waveEmoji", 4);
+        message = generateServiceWorkerMsg("👋", "waveEmoji", 4, wholeText);
       }
       if (wholeText.includes("😊")) {
-        message = generateServiceWorkerMsg("😊", "blushEmoji", 3);
+        message = generateServiceWorkerMsg("😊", "blushEmoji", 3, wholeText);
       }
 
       // second row
       if (wholeText.includes("🙂")) {
-        message = generateServiceWorkerMsg("🙂", "smileEmoji", 1);
+        message = generateServiceWorkerMsg("🙂", "smileEmoji", 1, wholeText);
       }
       if (wholeText.includes("😱")) {
-        message = generateServiceWorkerMsg("😱", "screamEmoji", 1);
+        message = generateServiceWorkerMsg("😱", "screamEmoji", 1, wholeText);
       }
 
       if (wholeText.includes("😗")) {
-        message = generateServiceWorkerMsg("😗", "woopsEmoji", 1);
+        message = generateServiceWorkerMsg("😗", "woopsEmoji", 1, wholeText);
       }
       if (wholeText.includes("👎")) {
-        message = generateServiceWorkerMsg("👎", "thumbsdownEmoji", 1);
+        message = generateServiceWorkerMsg(
+          "👎",
+          "thumbsdownEmoji",
+          1,
+          wholeText
+        );
       }
 
       if (wholeText.includes("🔍")) {
-        message = generateServiceWorkerMsg("🔍", "searchEmoji", 1);
+        message = generateServiceWorkerMsg("🔍", "searchEmoji", 1, wholeText);
       }
 
       if (wholeText.includes("❤️")) {
-        message = generateServiceWorkerMsg("❤️", "loveEmoji", 1);
+        message = generateServiceWorkerMsg("❤️", "loveEmoji", 1, wholeText);
       }
 
       if (wholeText.includes("😇")) {
-        message = generateServiceWorkerMsg("😇", "angelEmoji", 2);
+        message = generateServiceWorkerMsg("😇", "angelEmoji", 2, wholeText);
       }
 
       // third row
       if (wholeText.includes("😠")) {
-        message = generateServiceWorkerMsg("😠", "annoyedEmoji", 1);
+        message = generateServiceWorkerMsg("😠", "annoyedEmoji", 1, wholeText);
       }
       if (wholeText.includes("👼")) {
-        message = generateServiceWorkerMsg("👼", "angelbabyEmoji", 1);
+        message = generateServiceWorkerMsg(
+          "👼",
+          "angelbabyEmoji",
+          1,
+          wholeText
+        );
       }
       if (wholeText.includes("😭")) {
-        message = generateServiceWorkerMsg("😭", "cryingEmoji", 1);
+        message = generateServiceWorkerMsg("😭", "cryingEmoji", 1, wholeText);
       }
       if (wholeText.includes("👏")) {
-        message = generateServiceWorkerMsg("👏", "clapEmoji", 4);
+        message = generateServiceWorkerMsg("👏", "clapEmoji", 4, wholeText);
       }
       if (wholeText.includes("😉")) {
-        message = generateServiceWorkerMsg("😉", "winkEmoji", 1);
+        message = generateServiceWorkerMsg("😉", "winkEmoji", 1, wholeText);
       }
       if (wholeText.includes("🍺")) {
-        message = generateServiceWorkerMsg("🍺", "beerEmoji", 1);
+        message = generateServiceWorkerMsg("🍺", "beerEmoji", 1, wholeText);
       }
 
       // 3 - send the thing
@@ -266,13 +277,15 @@ const createElement = ({
   return element;
 };
 
-const isPartyMode = (sessionValue) => {
+// TODO: Move this to actions
+const isPartyMode = (sessionValue, threshold = 11) => {
   if (!sessionStorage.getItem("jitsi-enhancer-emojis")) return;
 
   // 1 - find the item
   const session = JSON.parse(sessionStorage.getItem("jitsi-enhancer-emojis"));
-  const threshold = 11;
+  // const threshold = 11;
 
+  // console.log("session[sessionValue]", session[sessionValue])
   // 2 - if there's 11, 22... etc... PARTY MODE
   return session[sessionValue] % threshold === 0;
 };
@@ -333,7 +346,7 @@ const createFloatingEmoji = (animationEmoji, length = 4) => {
   // create a visual UI element
   // TODO: refactor using the createElement function
   const emojiElement = document.createElement("div");
-  const emojiElementID = `emoji-id-${Date.now()}`; // TODO: Poor Man's ID generator
+  const emojiElementID = `emoji-id-${Math.random()}`; // TODO: Poor Man's ID generator
 
   emojiElement.setAttribute("id", emojiElementID);
   emojiElement.classList.add("jitsi-enhance-animation-emoji");
@@ -354,54 +367,61 @@ const createFloatingEmoji = (animationEmoji, length = 4) => {
   }, length * 1000);
 };
 
-// const createSuperText = (content, length = 5) => {
-//   const videoWindow = document.querySelector(
-//     "#jitsi-enhance-animation-container"
-//   );
+const createSuperText = (content, length = 5) => {
+  const videoWindow = document.querySelector(
+    "#jitsi-enhance-animation-container"
+  );
 
-//   if (!videoWindow) return;
+  if (!videoWindow) return;
 
-//   const Text = createElement({
-//     type: "p",
-//     attributes: {
-//       class: "super-text",
-//     },
-//     props: {
-//       innerText: content,
-//     },
-//     appendTo: `#${videoWindow.id}`,
-//   });
+  const Text = createElement({
+    type: "p",
+    attributes: {
+      class: "super-text",
+    },
+    props: {
+      innerText: content,
+    },
+    appendTo: `#${videoWindow.id}`,
+  });
 
-//   setTimeout(() => {
-//     Text.remove();
-//   }, length * 1000);
-// };
+  setTimeout(() => {
+    Text.remove();
+  }, length * 1000);
+};
 
-const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4) => {
+// TODO: This is too 'coupled'? Or maybe the name doesn't make sense
+// Actions -> get content, create emoji effects, save sessions, create serviceWorker message.
+const generateServiceWorkerMsg = (
+  theEmoji,
+  sfxName,
+  sfxLength = 4,
+  content = null
+) => {
   if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
 
+  // Count how many there are
+  const regex = new RegExp(theEmoji, "g");
+  const count = (content) ? (content.match(regex) || []).length : 1;
+
   // 1 - If it's an emoji - Show the emoji floating from the bottom
-  if (theEmoji) {
-    // TODO: make this into it's own function
+  if (theEmoji && content) {
+    // isPartyMode
+    if (isPartyMode("emojiCount", 11)) {
+      console.log("It's PARTY MODE");
+      createSuperText("OH YEAAAAAAH!!!", 4);
+      createFireworks(4); // TODO: Do something better with this
+    }
 
-    const videoWindow = document.querySelector(
-      "#jitsi-enhance-animation-container"
-    );
-
-    if (videoWindow) {
-      //isPartyMode
-      if (isPartyMode("emojiCount")) {
-        createFireworks(4); // TODO: Do something better with this
-      }
-
-      createFloatingEmoji(theEmoji);
-    } else {
-      console.warning("No window was found.");
+    for (let i = 0; i < count; i++) {
+      console.log("Count: ", i);
+      // setTimeout(createFloatingEmoji(theEmoji), i * 500); // TODO: Performance goof?
+      createFloatingEmoji(theEmoji); // TODO: Performance goof?
     }
   }
 
   // 2 - sessionStorage of the event
-  saveSessionData(sfxName, 1, "add");
+  saveSessionData(sfxName, count, "add");
 
   // 3 - return the Object
   return {

@@ -111,47 +111,75 @@
 * 
 */
 
-#scroll-container {
+/* #scroll-container {
   border: 3px solid black;
   border-radius: 5px;
   overflow: hidden;
-}
+} */
 
-.scroll-text {
-  text-align: right;
+#jitsi-enhance-animation-container .super-text {
+  font-size: 8rem;
+  font-weight: 700;
+  color: white;
+  font-style: italic;
+  z-index: var(--zindex);
+
+  position: absolute;
+  top: 50%;
+  left: 0;
 
   /* animation properties */
   -moz-transform: translateX(-100%);
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-  
-  -moz-animation: scroll-text-right 15s linear infinite;
-  -webkit-animation: scroll-text-right 15s linear infinite;
-  animation: scroll-text-right 15s linear infinite;
+  /* animation-direction: reverse; */
+
+  -moz-animation: scroll-text-right 3s linear 1;
+  -webkit-animation: scroll-text-right 3s linear 1;
+  animation: scroll-text-right 3s linear 1;
 }
 
 /* for Firefox */
 @-moz-keyframes scroll-text-right {
-  from { -moz-transform: translateX(-100%); }
-  to { -moz-transform: translateX(100%); }
+  0% { -moz-transform: translateX(-100%); }
+  20% { -moz-transform: translateX(60%); }
+  80% { -moz-transform: translateX(60%);  opacity: 1;}
+  100% { -moz-transform: translateX(100%);  opacity: 0; }
 }
 
 /* for Chrome */
 @-webkit-keyframes scroll-text-right {
-  from { -webkit-transform: translateX(-100%); }
-  to { -webkit-transform: translateX(100%); }
+  0% { -webkit-transform: translateX(-100%); }
+  20% { -webkit-transform: translateX(60%); }
+  80% { -webkit-transform: translateX(60%); opacity: 1; }
+  100% { -webkit-transform: translateX(100%);  opacity: 0; }
 }
 
 @keyframes scroll-text-right {
-  from {
+  0% {
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
   }
-  to {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+
+  10% {
+    -moz-transform: translateX(60%);
+    -webkit-transform: translateX(60%);
+    transform: translateX(60%);
+  }
+
+  90% {
+    -moz-transform: translateX(60%);
+    -webkit-transform: translateX(60%);
+    transform: translateX(60%);
+    opacity: 1;    
+  }
+
+  100% {
+    -moz-transform: translateX(125%);
+    -webkit-transform: translateX(125%);
+    transform: translateX(125%);
+    opacity: 0;
   }
 }
 

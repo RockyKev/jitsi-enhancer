@@ -61,24 +61,25 @@ For example:
 - [x] Zip feature
 - [x] add super animation when event it clicked X times.
 - [x] add super text when event it clicked X times.
-- [ ] check for multiple emojis
+- [x] check for multiple emojis
 - [x] Add a tracker of how many emojis were clicked.
-- [ ] Add twitch-style 'crazy border' when something happens
-- [ ] unhook if there's an accident. 
+- [x] Add a global variable to set it so only one sfx at a time.
 - [ ] Only create one "jitsi-extend-animation-container"
-- [ ] Add a global variable to set it so only one sfx at a time.
 - [ ] send messages from service worker to client.
 - [ ] create utils
+- [ ] unhook if there's an accident. 
 
 ### 1.0 Green Day
 - [ ] Release
 
 ## Unknowns
-1 - What happens when multiple emojis are in the same sentence?
-3 - If you load the extension before the chat, it causes an error. 
-4 - what happens when you hit it on the intro screen?
-[ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
-[ ] turning it off doesn’t unhook things?
+- [ ] What happens when multiple emojis are in the same sentence?
+- [ ] If you load the extension before the chat, it causes an error. 
+- [ ] what happens when you hit it on the intro screen?
+
+- [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
+- [ ] turning it off doesn’t unhook things?
+- [ ] Add twitch-style 'crazy border' when something happens
 
 ## Unorganized
 1 - Set it up so animation doesn't play if you're not paying attention to the screen.
