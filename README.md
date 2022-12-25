@@ -60,7 +60,7 @@ For example:
 - [x] Add new sfxs
 - [x] Zip feature
 - [x] add super animation when event it clicked X times.
-- [ ] add super text when event it clicked X times.
+- [x] add super text when event it clicked X times.
 - [ ] check for multiple emojis
 - [x] Add a tracker of how many emojis were clicked.
 - [ ] Add twitch-style 'crazy border' when something happens
