@@ -4,7 +4,6 @@
  * Console messages show up in the Page Devtools
  *
  */
-const SCRIPT_DEBUG = true;
 
 const chatCallback = (mutations) => {
   //   if (SCRIPT_DEBUG) console.log(mutations);
@@ -22,15 +21,6 @@ const chatCallback = (mutations) => {
         return;
       }
 
-      //   SCRIPT_DEBUG && childElement
-      //     ? console.log(childElement)
-      //     : console.log("no childElement was returned");
-      //   SCRIPT_DEBUG && childText
-      //     ? console.dir(childText)
-      //     : console.log("no childText was returned");
-      //   SCRIPT_DEBUG && wholeText
-      //     ? console.dir(wholeText)
-      //     : console.log("no wholeText was returned");
 
       // TODO: Crazy Regex for Emoji checker?
       // https://stackoverflow.com/a/64007175/4096078
@@ -146,14 +136,9 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg("🍺", "beerEmoji", 1, wholeText);
       }
 
-      // 3 - send the thing
-      //   if (SCRIPT_DEBUG) {
-      //     console.log("The Message?");
-      //     console.log(message);
-      //     console.log(Object.keys(message).length !== 0);
-      //   }
+      // Send the Message to the Service Worker
       if (Object.keys(message) && Object.keys(message).length !== 0) {
-        // if (SCRIPT_DEBUG) console.log("Sending Message:");
+
 
         (async () => {
           const response = await chrome.runtime.sendMessage(message);
@@ -352,7 +337,7 @@ const createSuperText = (content, length = 5) => {
 // TODO: This is too 'coupled'? Or maybe the name doesn't make sense
 // Actions -> get content, create emoji effects, save sessions, create serviceWorker message.
 const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4, content = null) => {
-  if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
+  // console.log(`contains ${sfxName}`);
 
   // Count how many there are
   const regex = new RegExp(theEmoji, "g");
@@ -384,9 +369,11 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4, content = nu
   };
 };
 
+
+// TODO: Move the Init and Release functions to it's own file
 const init = () => {
   console.log("initializing");
-  if (SCRIPT_DEBUG) console.clear();
+  console.clear(); // TODO: Figure out a better way to do this
 
   /* Save Sessions */
   // TODO: Have it count all the previous messages and automatically track that.
@@ -442,18 +429,54 @@ const init = () => {
       : console.info("Chrome Extension: still can't find it?");
   }
 
-  // TODO: Import in here would be nice.
-
-  /* Create the Observer */
-  const observer = new MutationObserver(chatCallback);
+  /* Engage the Observer */
   const options = {
     attributes: true,
     childList: true,
     subtree: true,
     characterDataOldValue: true,
   };
-  observer.observe(chatWindow, options);
+  OBSERVER.observe(chatWindow, options);
 };
 
-// run the initalization
-init();
+// TODO: This is hacky and should be integrated into the init script?
+const release = () => {
+  
+  console.log("releasing elements")
+  // 1 - get rid of added stuff
+  const getAnimationContainer = document.querySelector("#jitsi-enhance-animation-container");
+  if (getAnimationContainer) {
+    getAnimationContainer.remove();
+  }
+
+  // 2 - get rid of sound injection thing
+  OBSERVER.disconnect();
+}
+
+
+// Initiate the Observer
+// TODO: Move this higher? Or somewhere else?
+const OBSERVER = new MutationObserver(chatCallback);
+
+
+
+/* 
+ * SERVICE WORKER LISTENER
+ * Recieve messages from the Service Worker
+ * https://developer.chrome.com/docs/extensions/mv3/messaging/
+ */
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+
+  if (request.enableExtension === "enable") {
+    console.log("RECIEVED: I have been told to enable the extension!");
+    // run the initalization
+    init();
+
+    // sendResponse({ farewell: "goodbye" });
+  } else if (request.enableExtension === "disable") {
+    console.log("RECIEVED: I have been told to disable the extension!");
+    // Clean up!
+    release();
+  }
+});

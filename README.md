@@ -65,10 +65,11 @@ For example:
 - [x] Add a tracker of how many emojis were clicked.
 - [x] Add a global variable to set it so only one sfx at a time.
 - [x] Only create one "jitsi-extend-animation-container"
-- [ ] send messages from service worker to client.
+- [x] send messages from service worker to client.
 - [ ] create utils
-- [ ] unhook if there's an accident. 
+- [x] unhook if there's an accident. 
 - [ ] count previous messages so everyone is sync'd
+- [ ] don't allow the extension to be on until room is joined
 
 ### 1.0 Green Day
 - [ ] Release

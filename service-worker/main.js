@@ -53,7 +53,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     // Next state will always be the opposite
     const nextState = prevState === "ON" ? "OFF" : "ON";
 
-    console.log(nextState);
+    console.log("We are moving to the nextstate: ", nextState);
 
     // Set the action badge to the next state
     await chrome.action.setBadgeText({
@@ -69,43 +69,49 @@ chrome.action.onClicked.addListener(async (tab) => {
         target: { tabId: tab.id },
       });
 
+
+      // TODO: Figure out how to properly load content scripts
       chrome.scripting.executeScript(
         {
           target: { tabId: tab.id },
           files: ["./service-worker/jitsi-enhancer.js"],
         },
         () => {
-          // ...
+          // send a message that we're LIVE!
+          (async () => {
+            const message = { enableExtension: "enable" };
+
+            const response = await chrome.tabs.sendMessage(tab.id, message);
+            // // do something with response here, not outside the function
+            console.log(response);
+          })();
         }
       );
+    } else if (nextState === "OFF") {
+      console.log("We are off now");
+
+      // TODO: this doesn't do anything yet?
+      await chrome.scripting.removeCSS({
+        target: { tabId: tab.id },
+        files: ["./service-worker/main.css"],
+      });
+
+      (async () => {
+        const message = { enableExtension: "disable" };
+        const response = await chrome.tabs.sendMessage(tab.id, message);
+        // // do something with response here, not outside the function
+        console.log(response);
+      })();
+
+
     }
-  } else if (nextState === "OFF") {
-    console.log("We are off now");
-
-    // TODO: this doesn't do anything yet?
-    await chrome.scripting.removeCSS({
-      files: ["./service-worker/main.css"],
-    });
-
-    // chrome.scripting.executeScript(
-    //   {
-    //     target: { tabId: tab.id },
-    //     files: ['jitsi-enhancer.js'],
-    //   },
-    //   () => {          // ...
-    //   }
-    // );
   }
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.groupCollapsed();
   console.log("I have recieved a request");
-  console.log(
-    sender.tab
-      ? "from a content script:" + sender.tab.url
-      : "from the extension"
-  );
+  console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
 
   console.log(request);
 
