@@ -64,10 +64,11 @@ For example:
 - [x] check for multiple emojis
 - [x] Add a tracker of how many emojis were clicked.
 - [x] Add a global variable to set it so only one sfx at a time.
-- [ ] Only create one "jitsi-extend-animation-container"
+- [x] Only create one "jitsi-extend-animation-container"
 - [ ] send messages from service worker to client.
 - [ ] create utils
 - [ ] unhook if there's an accident. 
+- [ ] count previous messages so everyone is sync'd
 
 ### 1.0 Green Day
 - [ ] Release

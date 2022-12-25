@@ -47,12 +47,7 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "traceySlash", 2, false);
       }
       if (wholeText.trim() === "/audienceClap") {
-        message = generateServiceWorkerMsg(
-          false,
-          "audienceClapSlash",
-          10,
-          false
-        );
+        message = generateServiceWorkerMsg(false, "audienceClapSlash", 10, false);
       }
       if (wholeText.trim() === "/bgJazz") {
         message = generateServiceWorkerMsg(false, "bgJazzSlash", 77, false);
@@ -66,12 +61,7 @@ const chatCallback = (mutations) => {
       }
 
       if (wholeText.trim() === "/leeroyJenkins") {
-        message = generateServiceWorkerMsg(
-          false,
-          "leeroyJenkinsSlash",
-          5,
-          false
-        );
+        message = generateServiceWorkerMsg(false, "leeroyJenkinsSlash", 5, false);
       }
 
       if (wholeText.trim() === "/enhance") {
@@ -121,12 +111,7 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg("😗", "woopsEmoji", 1, wholeText);
       }
       if (wholeText.includes("👎")) {
-        message = generateServiceWorkerMsg(
-          "👎",
-          "thumbsdownEmoji",
-          1,
-          wholeText
-        );
+        message = generateServiceWorkerMsg("👎", "thumbsdownEmoji", 1, wholeText);
       }
 
       if (wholeText.includes("🔍")) {
@@ -146,12 +131,7 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg("😠", "annoyedEmoji", 1, wholeText);
       }
       if (wholeText.includes("👼")) {
-        message = generateServiceWorkerMsg(
-          "👼",
-          "angelbabyEmoji",
-          1,
-          wholeText
-        );
+        message = generateServiceWorkerMsg("👼", "angelbabyEmoji", 1, wholeText);
       }
       if (wholeText.includes("😭")) {
         message = generateServiceWorkerMsg("😭", "cryingEmoji", 1, wholeText);
@@ -193,12 +173,7 @@ const chatCallback = (mutations) => {
  * @param {string} storageName - the session data
  */
 
-const saveSessionData = (
-  dataLabel,
-  dataValue,
-  action = "update",
-  storageName = "jitsi-enhancer-emojis"
-) => {
+const saveSessionData = (dataLabel, dataValue, action = "update", storageName = "jitsi-enhancer-emojis") => {
   let sessionData = {};
 
   if (!sessionStorage.getItem(storageName)) {
@@ -233,10 +208,7 @@ const saveSessionData = (
 
     // Add to the total
     // TODO: too heavy? Maybe just use a regular ++?
-    sessionData["emojiCount"] = Object.values(sessionData).reduce(
-      (a, b) => a + b,
-      0
-    );
+    sessionData["emojiCount"] = Object.values(sessionData).reduce((a, b) => a + b, 0);
   }
 
   // 4 - rebuild the item
@@ -245,14 +217,7 @@ const saveSessionData = (
 
 // TODO: Move to utils.js
 // yoink: https://dev.to/soorajsnblaze333/generic-snippets-dom-element-creation-3go9
-const createElement = ({
-  type,
-  styles,
-  attributes,
-  props,
-  eventHandlers,
-  appendTo,
-}) => {
+const createElement = ({ type, styles, attributes, props, eventHandlers, appendTo }) => {
   let elementType = type || "div";
   let elementStyles = styles || {};
   let elementAttributes = attributes || {};
@@ -291,9 +256,7 @@ const isPartyMode = (sessionValue, threshold = 11) => {
 };
 
 const createFireworks = (length = 1) => {
-  const videoWindow = document.querySelector(
-    "#jitsi-enhance-animation-container"
-  );
+  const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
   if (!videoWindow) return;
 
@@ -337,9 +300,7 @@ const createFireworks = (length = 1) => {
 };
 
 const createFloatingEmoji = (animationEmoji, length = 4) => {
-  const videoWindow = document.querySelector(
-    "#jitsi-enhance-animation-container"
-  );
+  const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
   if (!videoWindow) return;
 
@@ -368,9 +329,7 @@ const createFloatingEmoji = (animationEmoji, length = 4) => {
 };
 
 const createSuperText = (content, length = 5) => {
-  const videoWindow = document.querySelector(
-    "#jitsi-enhance-animation-container"
-  );
+  const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
   if (!videoWindow) return;
 
@@ -392,17 +351,12 @@ const createSuperText = (content, length = 5) => {
 
 // TODO: This is too 'coupled'? Or maybe the name doesn't make sense
 // Actions -> get content, create emoji effects, save sessions, create serviceWorker message.
-const generateServiceWorkerMsg = (
-  theEmoji,
-  sfxName,
-  sfxLength = 4,
-  content = null
-) => {
+const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4, content = null) => {
   if (SCRIPT_DEBUG) console.log(`contains ${sfxName}`);
 
   // Count how many there are
   const regex = new RegExp(theEmoji, "g");
-  const count = (content) ? (content.match(regex) || []).length : 1;
+  const count = content ? (content.match(regex) || []).length : 1;
 
   // 1 - If it's an emoji - Show the emoji floating from the bottom
   if (theEmoji && content) {
@@ -446,18 +400,23 @@ const init = () => {
 
   if (videoWindow) {
     // create a wrapper
-    const animationContainer = document.createElement("div");
-    animationContainer.setAttribute("id", "jitsi-enhance-animation-container");
 
-    // create a fieldset and legend for text
-    const animationContainerFieldset = document.createElement("fieldset");
-    const animationContainerFieldsetLegend = document.createElement("legend");
-    animationContainerFieldsetLegend.innerText = "JITSI ENHANCED";
-    animationContainerFieldset.append(animationContainerFieldsetLegend);
-    animationContainer.append(animationContainerFieldset);
+    const getAnimationContainer = document.querySelector("#jitsi-enhance-animation-container");
+    if (!getAnimationContainer) {
+      // TODO: Rebuild using the util function
+      const animationContainer = document.createElement("div");
+      animationContainer.setAttribute("id", "jitsi-enhance-animation-container");
 
-    // attach everything together
-    videoWindow.prepend(animationContainer);
+      // create a fieldset and legend for text
+      const animationContainerFieldset = document.createElement("fieldset");
+      const animationContainerFieldsetLegend = document.createElement("legend");
+      animationContainerFieldsetLegend.innerText = "JITSI ENHANCED";
+      animationContainerFieldset.append(animationContainerFieldsetLegend);
+      animationContainer.append(animationContainerFieldset);
+
+      // attach everything together
+      videoWindow.prepend(animationContainer);
+    }
   } else {
     console.error("Chrome Extension: Can't find the videoContainer");
     return; // early exit
@@ -470,9 +429,7 @@ const init = () => {
     console.info("Chrome Extension: Can't find the chatWindow");
 
     // find the chat button
-    const chatButton = document.querySelector(
-      ".toolbar-button-with-badge"
-    ).firstChild;
+    const chatButton = document.querySelector(".toolbar-button-with-badge").firstChild;
     chatButton.click();
 
     // If that doesn't work: https://stackoverflow.com/a/70695934/4096078

@@ -82,6 +82,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   } else if (nextState === "OFF") {
     console.log("We are off now");
 
+    // TODO: this doesn't do anything yet?
     await chrome.scripting.removeCSS({
       files: ["./service-worker/main.css"],
     });
