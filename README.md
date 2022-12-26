@@ -66,41 +66,34 @@ For example:
 - [x] Add a global variable to set it so only one sfx at a time.
 - [x] Only create one "jitsi-extend-animation-container"
 - [x] send messages from service worker to client.
-- [ ] create utils
 - [x] unhook if there's an accident. 
-- [ ] count previous messages so everyone is sync'd
-- [ ] don't allow the extension to be on until room is joined
 
 ### 1.0 Green Day
 - [ ] Release
 
 ## Unknowns
-- [ ] What happens when multiple emojis are in the same sentence?
+- [x] What happens when multiple emojis are in the same sentence?
 - [ ] If you load the extension before the chat, it causes an error. 
 - [ ] what happens when you hit it on the intro screen?
+- [ ] create utils (Can't seem to figure out import statements?)
+- [ ] don't allow the extension to be on until room is joined
+- [ ] count previous messages so everyone is sync'd
 
-- [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension)
+- [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension) and [Create a Vite-React Chrome Extension in 90 seconds](https://dev.to/jacksteamdev/create-a-vite-react-chrome-extension-in-90-seconds-3df7)
 - [ ] turning it off doesn’t unhook things?
 - [ ] Add twitch-style 'crazy border' when something happens
 
-## Unorganized
-1 - Set it up so animation doesn't play if you're not paying attention to the screen.
-2 - Session counter to see counts of things
-3 - Multi tap
-4 - Typescript?
-5 - Can't unload script if you disable? Figure out a [solution to turn off](https://stackoverflow.com/questions/18477910/chrome-extension-how-to-remove-content-script-after-injection). Maybe [move to manifest?](https://github.com/fregante/webext-dynamic-content-scripts/blob/main/how-to-add-github-enterprise-support-to-web-extensions.md)
-If you uppercut enough, the 'toasty' guy pops out.https://codepen.io/smnarnold/pen/PoWWRRv?editors=0010And fireworks.https://codepen.io/yshlin/pen/WNMmQX
-if you turn it off, a alert pops up saying that you'll have to restart the browser?
-Service worker communicating via sessionStorage? Or just sending messages back and forth?
+- [ ] Can we move out of background pages? Might have to consider [web_accessible_resources](https://dev.to/jacksteamdev/advanced-config-for-rpce-3966)
 
-/leroyJenkins - https://www.soundboard.com/sb/sound/890785
-/doh - https://www.soundboard.com/sb/doh_audio_clip_homer
-/woohoo - https://www.voicy.network/clips/0g02Uq3p6UWsGxvZm36BwA
-/enhance - https://movie-sounds.org/comedy-movie-sounds/quotes-with-sound-clips-from-super-troopers/enhance-enhance-enhance-zjv
-
+- [ ] Set it up so animation doesn't play if you're not paying attention to the screen.
+- [ ] Typescript?
+- [ ] Can't unload script if you disable? Figure out a [solution to turn off](https://stackoverflow.com/questions/18477910/chrome-extension-how-to-remove-content-script-after-injection). Maybe [move to manifest?](https://github.com/fregante/webext-dynamic-content-scripts/blob/main/how-to-add-github-enterprise-support-to-web-extensions.md)
+- [ ] If you uppercut enough, the 'toasty' guy pops out.https://codepen.io/smnarnold/pen/PoWWRRv?editors=0010And fireworks.https://codepen.io/yshlin/pen/WNMmQX
+- [ ] if you turn it off, a alert pops up saying that you'll have to restart the browser?
 
 ## References
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/
+https://stackoverflow.com/a/9517879/4096078
 
      
 ## Screenshot
