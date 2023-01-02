@@ -1,6 +1,6 @@
 {
   "name": "jitsi-enhancer",
-  "version": "0.8.2",
+  "version": "1.0.0",
   "description": "\"This enhances Jitsi to add sfx to emojis, and more. (please clap)\"",
   "main": "main.js",
   "scripts": {

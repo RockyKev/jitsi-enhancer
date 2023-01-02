@@ -69,7 +69,7 @@ For example:
 - [x] unhook if there's an accident. 
 
 ### 1.0 Green Day
-- [ ] Release
+- [x] Release
 
 ## Unknowns
 - [x] What happens when multiple emojis are in the same sentence?
