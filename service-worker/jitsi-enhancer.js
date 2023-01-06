@@ -36,6 +36,18 @@ const chatCallback = (mutations) => {
       if (wholeText.trim() === "/tracey") {
         message = generateServiceWorkerMsg(false, "traceySlash", 2, false);
       }
+      if (wholeText.trim() === "/luna") {
+        message = generateServiceWorkerMsg(false, "lunaSlash", 2, false);
+      }
+      if (wholeText.trim() === "/ryann") {
+        message = generateServiceWorkerMsg(false, "ryannSlash", 2, false);
+      }
+      if (wholeText.trim() === "/grayson") {
+        message = generateServiceWorkerMsg(false, "graysonSlash", 2, false);
+      }
+      if (wholeText.trim() === "/bridgett") {
+        message = generateServiceWorkerMsg(false, "bridgettSlash", 4, false);
+      }
       if (wholeText.trim() === "/audienceClap") {
         message = generateServiceWorkerMsg(false, "audienceClapSlash", 10, false);
       }
@@ -64,6 +76,20 @@ const chatCallback = (mutations) => {
 
       if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
         message = generateServiceWorkerMsg(false, "ffvictorySlash", 5, false);
+      }
+
+      if (wholeText.trim() === "/late") {
+        message = generateServiceWorkerMsg(false, "lateSlash", 12, false);
+      }
+
+      //STAR WARS SLASH COMMANDS
+
+      if (wholeText.trim() === "/swpower") {
+        message = generateServiceWorkerMsg(false, "swpowerSlash", 4, false);
+      }
+
+      if (wholeText.trim() === "/swscream") {
+        message = generateServiceWorkerMsg(false, "swscreamSlash", 5, false);
       }
 
       // EMOJI COMMANDS

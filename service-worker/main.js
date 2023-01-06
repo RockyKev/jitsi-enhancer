@@ -155,11 +155,18 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "audienceClapSlash":
     case "bgJazzSlash":
     case "traceySlash":
+    case "lunaSlash":
+    case "ryannSlash":
+    case "graysonSlash":
+    case "bridgettSlash":
     case "dohSlash":
     case "enhanceSlash":
     case "leeroyJenkinsSlash":
     case "woohooSlash":
     case "ffvictorySlash":
+    case "lateSlash":
+    case "swpowerSlash":
+    case "swscreamSlash":
       playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
