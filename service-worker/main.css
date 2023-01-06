@@ -64,6 +64,22 @@
   animation-fill-mode: forwards;
 }
 
+
+#jitsi-enhance-animation-container input[type=range] {
+  -webkit-appearance: none;
+}
+
+#jitsi-enhance-animation-container input[type=range]:focus {
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #053a5f;
+  height: 3rem;
+}
+
+
 @keyframes color-shift {
   0% {
     border-top-color: green;

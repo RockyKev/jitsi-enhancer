@@ -9,10 +9,12 @@ const chatCallback = (mutations) => {
   //   if (SCRIPT_DEBUG) console.log(mutations);
 
   for (let mutation of mutations) {
+    console.log(mutation)
     if (mutation.type === "childList" && mutation.addedNodes[0]) {
       // Get the new added node
       const childElement = mutation.addedNodes[0];
       const childText = childElement.querySelector(".usermessage");
+      if (!childText) console.log('no usermessage in the above mutation')
       const childHTML = childText.innerHTML;
       const wholeText = childHTML.substring(childHTML.indexOf("</span>") + 7);
 
@@ -366,8 +368,11 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4, content = nu
   return {
     sfx: sfxName,
     sfxLength: sfxLength,
+    sfxVolume: document.querySelector('#volume-slider').value / 100
   };
 };
+
+
 
 
 // TODO: Move the Init and Release functions to it's own file
@@ -400,6 +405,12 @@ const init = () => {
       animationContainerFieldsetLegend.innerText = "JITSI ENHANCED";
       animationContainerFieldset.append(animationContainerFieldsetLegend);
       animationContainer.append(animationContainerFieldset);
+
+      // create a volume slider
+      const volumeSlider = document.createElement('input');
+      volumeSlider.setAttribute('type', 'range');
+      volumeSlider.setAttribute('id', 'volume-slider');
+      animationContainerFieldset.append(volumeSlider);
 
       // attach everything together
       videoWindow.prepend(animationContainer);
