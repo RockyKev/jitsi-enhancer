@@ -9,12 +9,10 @@ const chatCallback = (mutations) => {
   //   if (SCRIPT_DEBUG) console.log(mutations);
 
   for (let mutation of mutations) {
-    console.log(mutation)
     if (mutation.type === "childList" && mutation.addedNodes[0]) {
       // Get the new added node
       const childElement = mutation.addedNodes[0];
       const childText = childElement.querySelector(".usermessage");
-      if (!childText) console.log('no usermessage in the above mutation')
       const childHTML = childText.innerHTML;
       const wholeText = childHTML.substring(childHTML.indexOf("</span>") + 7);
 

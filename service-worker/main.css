@@ -66,17 +66,13 @@
 
 
 #jitsi-enhance-animation-container input[type=range] {
+  margin: 6px auto;
   -webkit-appearance: none;
 }
 
 #jitsi-enhance-animation-container input[type=range]:focus {
   outline: 0 !important;
   border: 0 !important;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-  background: #053a5f;
-  height: 3rem;
 }
 
 
