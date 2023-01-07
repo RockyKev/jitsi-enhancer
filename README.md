@@ -76,8 +76,10 @@ For example:
 ## TODO 
 
 ### 1.1 Foo Fighters
+- [ ] migrate things to a assets folder
 - [ ] [vite build](https://github.com/StarkShang/vite-plugin-chrome-extension) and [Create a Vite-React Chrome Extension in 90 seconds](https://dev.to/jacksteamdev/create-a-vite-react-chrome-extension-in-90-seconds-3df7)
-- [ ] Separate CSS into SCSS
+- [ ] Separate `background-window` into `src/background-window` -> `assets/background-window`
+- [ ] Separate `service-worker/main.css` into `src/service-worker/scss/`-> `assets/service-worker/`
 - [ ] create utils (Can't seem to figure out import statements?)
 - [ ] Tagging system in github
 - [ ] Zip file downloads in github
@@ -85,8 +87,8 @@ For example:
 ### 1.2 Counting Crows
 - [ ] Add twitch-style 'crazy border' when something happens
 - [ ] Add Credits Effect
-- [ ] 
 - [ ] what happens when you hit it on the intro screen?
+- [ ] stop feature so much doesn't play if it's too long
 
 ### 1.3 The Offspring
 - [ ] count previous messages so everyone is sync'd
@@ -97,6 +99,7 @@ For example:
 - [ ] if you turn it off, a alert pops up saying that you'll have to restart the browser?
 - [ ] If you load the extension before the chat, it causes an error. 
 - [ ] don't allow the extension to be on until room is joined
+- [ ] Currently, audio still plays if the main browser is closed. 
 
 ### 1.4 No Doubt
 

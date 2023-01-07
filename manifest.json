@@ -11,7 +11,7 @@
     "128": "images/icon-128.png"
   },
   "background": {
-    "service_worker": "service-worker/main.js",
+    "service_worker": "assets/service-worker/main.js",
     "type": "module"
   },
   "action": {
