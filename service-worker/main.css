@@ -64,6 +64,18 @@
   animation-fill-mode: forwards;
 }
 
+
+#jitsi-enhance-animation-container input[type=range] {
+  margin: 6px auto;
+  -webkit-appearance: none;
+}
+
+#jitsi-enhance-animation-container input[type=range]:focus {
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+
 @keyframes color-shift {
   0% {
     border-top-color: green;

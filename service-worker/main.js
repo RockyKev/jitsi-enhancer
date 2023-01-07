@@ -10,6 +10,7 @@ const meetingUrl1 = "https://meet.jit.si/";
 const meetingUrl2 = "https://meet.";
 const EXTENSION_DEBUG = true;
 
+
 // Play Sound
 function playSound(src = "audio/ffvictorySlash.wav", length = 4, volume = 0.5) {
   let url = chrome.runtime.getURL("background-window/audio.html");
@@ -126,7 +127,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "tongueEmoji":
     case "waveEmoji":
     case "blushEmoji":
-      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
       break;
 
     // second row
@@ -137,7 +138,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "searchEmoji":
     case "loveEmoji":
     case "angelEmoji":
-      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
       break;
 
     // third row
@@ -147,7 +148,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "clapEmoji":
     case "winkEmoji":
     case "beerEmoji":
-      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
       break;
 
     // slash commands
@@ -160,7 +161,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "leeroyJenkinsSlash":
     case "woohooSlash":
     case "ffvictorySlash":
-      playSound(`audio/${request.sfx}.wav`, request.sfxLength);
+      playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
       break;
 
     default:
