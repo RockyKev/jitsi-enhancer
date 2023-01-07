@@ -24,7 +24,7 @@ function playSound(src = "audio/ffvictorySlash.wav", length = 4, volume = 0.5) {
 
   chrome.windows.create({
     type: "popup",
-    focused: false,
+    focused: true,
     top: 1,
     left: 1,
     height: 1,

@@ -99,7 +99,7 @@ For example:
 - [ ] don't allow the extension to be on until room is joined
 
 ### 1.4 No Doubt
-
+- [ ] Update readme to include instructions in how the whole project works
 
 ### 1.5 R.E.M
 
@@ -128,3 +128,13 @@ https://stackoverflow.com/a/9517879/4096078
 Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6185">Pixabay</a>
 
 Additional sound effects from https://www.zapsplat.com
+
+
+## Contributors
+Made with [contributors-img](https://contrib.rocks).
+
+<a href="https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=RockyKev/jitsi-enhancer"/>
+</a>
+
+

@@ -363,6 +363,7 @@ const generateServiceWorkerMsg = (theEmoji, sfxName, sfxLength = 4, content = nu
   saveSessionData(sfxName, count, "add");
 
   // 3 - return the Object
+  // TODO: figure out how to decouple the sfxVolume so it's part of the params
   return {
     sfx: sfxName,
     sfxLength: sfxLength,
@@ -405,10 +406,15 @@ const init = () => {
       animationContainer.append(animationContainerFieldset);
 
       // create a volume slider
+      // TODO: Rebuild using the util function -- and potentially rename to avoid any jitsi clashing
       const volumeSlider = document.createElement('input');
       volumeSlider.setAttribute('type', 'range');
       volumeSlider.setAttribute('id', 'volume-slider');
       animationContainerFieldset.append(volumeSlider);
+
+      // volumeSlider.addEventListener("input", () => {
+      //   console.log(`Volume Adjusted: ${volumeSlider.value}`)
+      // })
 
       // attach everything together
       videoWindow.prepend(animationContainer);
