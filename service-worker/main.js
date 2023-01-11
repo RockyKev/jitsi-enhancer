@@ -163,6 +163,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "enhanceSlash":
     case "leeroyJenkinsSlash":
     case "woohooSlash":
+    case "cricketsSlash":  
     case "ffvictorySlash":
     case "lateSlash":
     case "swpowerSlash":

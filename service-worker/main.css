@@ -139,6 +139,24 @@
   animation: scroll-text-right 3s linear 1;
 }
 
+#jitsi-enhance-animation-container .flying-gif {
+  z-index: var(--zindex);
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  /* animation properties */
+  -moz-transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  /* animation-direction: reverse; */
+
+  -moz-animation: scroll-text-right 3s linear 1;
+  -webkit-animation: scroll-text-right 3s linear 1;
+  animation: scroll-text-right 3s linear 1;
+}
+
 /* for Firefox */
 @-moz-keyframes scroll-text-right {
   0% { -moz-transform: translateX(-100%); }

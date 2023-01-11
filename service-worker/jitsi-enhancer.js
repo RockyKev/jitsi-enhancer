@@ -74,6 +74,10 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "woohooSlash", 1, false);
       }
 
+      if (wholeText.trim() === "/crickets") {
+        message = generateServiceWorkerMsg(false, "/cricketsSlash", 4, false);
+      }
+
       if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
         message = generateServiceWorkerMsg(false, "ffvictorySlash", 5, false);
       }
@@ -359,6 +363,27 @@ const createSuperText = (content, length = 5) => {
     Text.remove();
   }, length * 1000);
 };
+
+const createFlyingGif = () => {
+  const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
+
+    if (!videoWindow) return;
+
+    const Gif = createElement({
+      type: "image",
+      attributes: {
+        class: "flying-gif",
+      },
+      props: {
+        innerText: content,
+      },
+      appendTo: `#${videoWindow.id}`,
+    });
+  
+    setTimeout(() => {
+      Gif.remove();
+    }, length * 1000);
+}
 
 // TODO: This is too 'coupled'? Or maybe the name doesn't make sense
 // Actions -> get content, create emoji effects, save sessions, create serviceWorker message.
