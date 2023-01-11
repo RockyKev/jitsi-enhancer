@@ -56,8 +56,8 @@ const chatCallback = (mutations) => {
       }
       if (wholeText.trim() === "/yeah") {
         message = generateServiceWorkerMsg(false, "yeahSlash", 8, false);
+        createFlyingGif(5);
       }
-
       if (wholeText.trim() === "/doh") {
         message = generateServiceWorkerMsg(false, "dohSlash", 1, false);
       }
@@ -364,7 +364,7 @@ const createSuperText = (content, length = 5) => {
   }, length * 1000);
 };
 
-const createFlyingGif = () => {
+const createFlyingGif = (length = 5) => {
   const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
     if (!videoWindow) return;
@@ -375,7 +375,7 @@ const createFlyingGif = () => {
         class: "flying-gif",
       },
       props: {
-        innerText: content,
+        innerText: '../images/csi.gif',
       },
       appendTo: `#${videoWindow.id}`,
     });
