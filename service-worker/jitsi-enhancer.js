@@ -56,7 +56,7 @@ const chatCallback = (mutations) => {
       }
       if (wholeText.trim() === "/yeah") {
         message = generateServiceWorkerMsg(false, "yeahSlash", 8, false);
-        createFlyingGif(5);
+        createFlyingGif();
       }
       if (wholeText.trim() === "/doh") {
         message = generateServiceWorkerMsg(false, "dohSlash", 1, false);
@@ -74,8 +74,8 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "woohooSlash", 1, false);
       }
 
-      if (wholeText.trim() === "/crickets") {
-        message = generateServiceWorkerMsg(false, "/cricketsSlash", 4, false);
+      if (wholeText.trim() === "/crickets" || wholeText.trim() === "/cricket") {
+        message = generateServiceWorkerMsg(false, "cricketsSlash", 4, false);
       }
 
       if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
@@ -364,25 +364,28 @@ const createSuperText = (content, length = 5) => {
   }, length * 1000);
 };
 
-const createFlyingGif = (length = 5) => {
+const createFlyingGif = (length = 8) => {
   const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
 
     if (!videoWindow) return;
 
+    const imgElement = document.createElement('img');
+    imgElement.src = '../images/csi.gif';
+
     const Gif = createElement({
-      type: "image",
+      type: "p",
       attributes: {
         class: "flying-gif",
       },
       props: {
-        innerText: '../images/csi.gif',
+        innerText: imgElement,
       },
       appendTo: `#${videoWindow.id}`,
     });
   
     setTimeout(() => {
       Gif.remove();
-    }, length * 1000);
+    }, length * 1500);
 }
 
 // TODO: This is too 'coupled'? Or maybe the name doesn't make sense
