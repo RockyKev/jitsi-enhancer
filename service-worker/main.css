@@ -152,9 +152,9 @@
   transform: translateX(-100%);
   /* animation-direction: reverse; */
 
-  -moz-animation: scroll-text-right 8s linear 1;
-  -webkit-animation: scroll-text-right 8s linear 1;
-  animation: scroll-text-right 8s linear 1;
+  -moz-animation: scroll-text-right 5s linear 1;
+  -webkit-animation: scroll-text-right 5s linear 1;
+  animation: scroll-text-right 5s linear 1;
 }
 
 /* for Firefox */
