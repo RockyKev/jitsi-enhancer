@@ -37,7 +37,7 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "traceySlash", 2, false);
       }
       if (wholeText.trim() === "/luna") {
-        message = generateServiceWorkerMsg(false, "lunaSlash", 2, false);
+        message = generateServiceWorkerMsg(false, "lunaSlash", 3, false);
       }
       if (wholeText.trim() === "/ryann") {
         message = generateServiceWorkerMsg(false, "ryannSlash", 2, false);
@@ -55,7 +55,7 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "bgJazzSlash", 77, false);
       }
       if (wholeText.trim() === "/yeah") {
-        message = generateServiceWorkerMsg(false, "yeahSlash", 8, false);
+        message = generateServiceWorkerMsg(false, "yeahSlash", 5, false);
         createFlyingGif();
       }
       if (wholeText.trim() === "/doh") {
@@ -86,6 +86,14 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "lateSlash", 12, false);
       }
 
+      if (wholeText.trim() === "/matrix") {
+        message = generateServiceWorkerMsg(false, "matrixSlash", 8, false);
+      }
+
+      if (wholeText.trim() === "/tmnt") {
+        message = generateServiceWorkerMsg(false, "cowabungaSlash", 5, false);
+      }
+
       //STAR WARS SLASH COMMANDS
 
       if (wholeText.trim() === "/swpower") {
@@ -94,6 +102,10 @@ const chatCallback = (mutations) => {
 
       if (wholeText.trim() === "/swscream") {
         message = generateServiceWorkerMsg(false, "swscreamSlash", 5, false);
+      }
+
+      if (wholeText.trim() === "/swterror") {
+        message = generateServiceWorkerMsg(false, "swterrorSlash", 5, false);
       }
 
       // EMOJI COMMANDS
@@ -369,16 +381,14 @@ const createFlyingGif = (length = 8) => {
 
     if (!videoWindow) return;
 
-    const imgElement = document.createElement('img');
-    imgElement.src = '../images/csi.gif';
-
+    //csi.gif is included in /images if you want to implement this in a different way -Luna
     const Gif = createElement({
-      type: "p",
+      type: "img",
       attributes: {
         class: "flying-gif",
       },
       props: {
-        innerText: imgElement,
+        src: "https://media.tenor.com/TSAHQZVhRfYAAAAC/explosion.gif",
       },
       appendTo: `#${videoWindow.id}`,
     });

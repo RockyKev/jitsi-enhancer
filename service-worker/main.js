@@ -166,8 +166,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "cricketsSlash":  
     case "ffvictorySlash":
     case "lateSlash":
+    case "matrixSlash":
+    case "cowabungaSlash":
     case "swpowerSlash":
     case "swscreamSlash":
+    case "swterrorSlash":
       playSound(`audio/${request.sfx}.wav`, request.sfxLength);
       break;
 
