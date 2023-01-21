@@ -36,6 +36,18 @@ const chatCallback = (mutations) => {
       if (wholeText.trim() === "/tracey") {
         message = generateServiceWorkerMsg(false, "traceySlash", 2, false);
       }
+      if (wholeText.trim() === "/luna") {
+        message = generateServiceWorkerMsg(false, "lunaSlash", 3, false);
+      }
+      if (wholeText.trim() === "/ryann") {
+        message = generateServiceWorkerMsg(false, "ryannSlash", 2, false);
+      }
+      if (wholeText.trim() === "/grayson") {
+        message = generateServiceWorkerMsg(false, "graysonSlash", 2, false);
+      }
+      if (wholeText.trim() === "/bridgett") {
+        message = generateServiceWorkerMsg(false, "bridgettSlash", 4, false);
+      }
       if (wholeText.trim() === "/audienceClap") {
         message = generateServiceWorkerMsg(false, "audienceClapSlash", 10, false);
       }
@@ -43,9 +55,9 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "bgJazzSlash", 77, false);
       }
       if (wholeText.trim() === "/yeah") {
-        message = generateServiceWorkerMsg(false, "yeahSlash", 8, false);
+        message = generateServiceWorkerMsg(false, "yeahSlash", 5, false);
+        createFlyingGif();
       }
-
       if (wholeText.trim() === "/doh") {
         message = generateServiceWorkerMsg(false, "dohSlash", 1, false);
       }
@@ -62,8 +74,38 @@ const chatCallback = (mutations) => {
         message = generateServiceWorkerMsg(false, "woohooSlash", 1, false);
       }
 
+      if (wholeText.trim() === "/crickets" || wholeText.trim() === "/cricket") {
+        message = generateServiceWorkerMsg(false, "cricketsSlash", 4, false);
+      }
+
       if (wholeText.trim() === "/ff" || wholeText.trim() === "/ffvictory") {
         message = generateServiceWorkerMsg(false, "ffvictorySlash", 5, false);
+      }
+
+      if (wholeText.trim() === "/late") {
+        message = generateServiceWorkerMsg(false, "lateSlash", 12, false);
+      }
+
+      if (wholeText.trim() === "/matrix") {
+        message = generateServiceWorkerMsg(false, "matrixSlash", 8, false);
+      }
+
+      if (wholeText.trim() === "/tmnt") {
+        message = generateServiceWorkerMsg(false, "cowabungaSlash", 5, false);
+      }
+
+      //STAR WARS SLASH COMMANDS
+
+      if (wholeText.trim() === "/swpower") {
+        message = generateServiceWorkerMsg(false, "swpowerSlash", 4, false);
+      }
+
+      if (wholeText.trim() === "/swscream") {
+        message = generateServiceWorkerMsg(false, "swscreamSlash", 5, false);
+      }
+
+      if (wholeText.trim() === "/swterror") {
+        message = generateServiceWorkerMsg(false, "swterrorSlash", 5, false);
       }
 
       // EMOJI COMMANDS
@@ -333,6 +375,28 @@ const createSuperText = (content, length = 5) => {
     Text.remove();
   }, length * 1000);
 };
+
+const createFlyingGif = (length = 8) => {
+  const videoWindow = document.querySelector("#jitsi-enhance-animation-container");
+
+    if (!videoWindow) return;
+
+    //csi.gif is included in /images if you want to implement this in a different way -Luna
+    const Gif = createElement({
+      type: "img",
+      attributes: {
+        class: "flying-gif",
+      },
+      props: {
+        src: "https://media.tenor.com/TSAHQZVhRfYAAAAC/explosion.gif",
+      },
+      appendTo: `#${videoWindow.id}`,
+    });
+  
+    setTimeout(() => {
+      Gif.remove();
+    }, length * 1500);
+}
 
 // TODO: This is too 'coupled'? Or maybe the name doesn't make sense
 // Actions -> get content, create emoji effects, save sessions, create serviceWorker message.

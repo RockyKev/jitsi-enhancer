@@ -156,12 +156,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "audienceClapSlash":
     case "bgJazzSlash":
     case "traceySlash":
+    case "lunaSlash":
+    case "ryannSlash":
+    case "graysonSlash":
+    case "bridgettSlash":
     case "dohSlash":
     case "enhanceSlash":
     case "leeroyJenkinsSlash":
     case "woohooSlash":
+    case "cricketsSlash":  
     case "ffvictorySlash":
-      playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
+    case "lateSlash":
+    case "matrixSlash":
+    case "cowabungaSlash":
+    case "swpowerSlash":
+    case "swscreamSlash":
+    case "swterrorSlash":
+    playSound(`audio/${request.sfx}.wav`, request.sfxLength, request.sfxVolume);
       break;
 
     default:
